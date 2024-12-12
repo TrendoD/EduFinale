@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Masuk</title>
+    <title>Masuk - EduFinale</title>
 
     <!-- GLOBAL STYLES -->
     <link href="<?php echo base_url();?>login-assets/css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
     <div class="container">
         <div class="row">
             <div class="login-banner text-center">
-                    <h1>Siap Proposal</h1>
+                    <h1>EduFinale</h1>
                 </div>
             <div class="col-md-4 col-md-offset-4">
 
@@ -64,16 +64,6 @@
                                 </div>
                                 <br>
                                 <input type="submit" class="btn btn-green btn-block" value="Masuk">
-                                <!--
-                                <p>
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <p><a class="btn btn-blue btn-block" href="<?=base_url();?>" role="button">Homepage</a></p>
-                                        </div>
-
-                                    </div>
-                                </p>
-                            -->
                             </fieldset>
                         </form>
                         <?php
