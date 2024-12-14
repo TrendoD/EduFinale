@@ -7,9 +7,9 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function namaDosen($arr, $nrp) {
+function namaDosen($arr, $nim) {
     foreach ($arr->result() as $row) {
-        if ($row->nrp == $nrp) {
+        if ($row->nim == $nim) {
             return $row->nama;
         }
     }
@@ -107,9 +107,9 @@ function namaDosen($arr, $nrp) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-3 control-label">NRP</label>
+                                                    <label for="textInput" class="col-sm-3 control-label">NIM</label>
                                                     <div class="col-sm-9">
-                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nrp?></label>
+                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nim?></label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -195,7 +195,7 @@ function namaDosen($arr, $nrp) {
                                                     <div class="form-group">
                                                         <input type="hidden" name="action" value="">
                                                         <input type="hidden" name="id" value="<?=$detail->id?>">
-                                                        <input type="hidden" name="nrp" value="<?=$detail->nrp?>">
+                                                        <input type="hidden" name="nim" value="<?=$detail->nim?>">
                                                         <label for="textArea" class="col-sm-3 control-label">Informasi Tambahan</label>
                                                         <div class="col-sm-9">
                                                             <textarea class="form-control" name="info" placeholder="Masukkan Informasi Tambahan Jika Diperlukan"></textarea>

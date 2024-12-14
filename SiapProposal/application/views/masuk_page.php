@@ -57,7 +57,7 @@
                         <form accept-charset="UTF-8" role="form" action="masuk/process" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="NRP / Username" name="nrp" type="text" required="required">
+                                    <input class="form-control" placeholder="NIM / Username" name="nim" type="text" required="required">
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" required="required">
@@ -73,7 +73,7 @@
                                 <p>
                                 <div class="alert alert-danger alert-dismissable">
                                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <strong>Login Gagal !</strong> Cek kembali NRP / Username dan Password
+                                    <strong>Login Gagal !</strong> Cek kembali NIM / Username dan Password
                                 </div>
                                 </p>
                                 <?php

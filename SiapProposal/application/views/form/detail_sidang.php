@@ -6,9 +6,9 @@ function status($status) {
     if ($status == 'done') return '<a class="btn btn-xs btn-success"><i class="fa fa-trash-o"></i> Selesai</a>';
 }
 
-function namaDosen($arr, $nrp) {
+function namaDosen($arr, $nim) {
     foreach ($arr->result() as $row) {
-        if ($row->nrp == $nrp) {
+        if ($row->nim == $nim) {
             return $row->nama;
         }
     }
@@ -114,9 +114,9 @@ function jam($time) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-3 control-label">NRP</label>
+                                                    <label for="textInput" class="col-sm-3 control-label">NIM</label>
                                                     <div class="col-sm-9">
-                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nrp?></label>
+                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nim?></label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -200,7 +200,7 @@ function jam($time) {
                                                     <div class="form-group">
                                                         <input type="hidden" name="action" value="">
                                                         <input type="hidden" name="id" value="<?=$detail->id?>">
-                                                        <input type="hidden" name="nrp" value="<?=$detail->nrp?>">
+                                                        <input type="hidden" name="nim" value="<?=$detail->nim?>">
                                                         <label for="textArea" class="col-sm-3 control-label">Status</label>
                                                         <div class="col-sm-9">
                                                             <?=status($detail->status)?>
@@ -222,7 +222,7 @@ function jam($time) {
                                                                     <option selected disabled hidden>Pilih Dosen</option>
                                                                     <?php
                                                                     foreach ($listdosen->result() as $row) {
-                                                                        echo "<option value='$row->nrp'>$row->nama - $row->nrp</option>";
+                                                                        echo "<option value='$row->nim'>$row->nama - $row->nim</option>";
                                                                     }
                                                                     ?>
                                                                     
@@ -245,7 +245,7 @@ function jam($time) {
                                                 <form action="/sidang/nilai" method="post">
                                                     <input type="hidden" name="action" value="">
                                                     <input type="hidden" name="id" value="<?=$detail->id?>">
-                                                    <input type="hidden" name="nrp" value="<?=$detail->nrp?>">
+                                                    <input type="hidden" name="nim" value="<?=$detail->nim?>">
 
                                                     <div class="form-group">
                                                         <label for="textArea" class="col-sm-3 control-label">Ubah Nilai</label>

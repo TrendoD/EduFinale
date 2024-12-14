@@ -8,7 +8,7 @@ class Detail extends CI_Controller {
 		$this->load->model('Sesi_m', 'sesi');
 		$this->load->model('User_m', 'userdatabase');
 		$this->sesi->validate_login();
-		$this->user = $this->db->get_where('user', array('nrp'=>$_SESSION['nrp']))->row();
+		$this->user = $this->db->get_where('user', array('nim'=>$_SESSION['nim']))->row();
 	}
 
 	public function index() {
