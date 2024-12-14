@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Apr 2019 pada 16.39
--- Versi server: 10.1.34-MariaDB
--- Versi PHP: 7.2.7
+-- Waktu pembuatan: 14 Des 2024 pada 19.46
+-- Versi server: 10.4.32-MariaDB
+-- Versi PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `SiapProposal`
+-- Database: `siapproposal`
 --
 
 -- --------------------------------------------------------
@@ -30,17 +29,17 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `berkas_bimbingan` (
   `id` int(11) NOT NULL,
-  `nrp` text NOT NULL,
+  `nim` text NOT NULL,
   `filename` text NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `berkas_bimbingan`
 --
 
-INSERT INTO `berkas_bimbingan` (`id`, `nrp`, `filename`, `date`) VALUES
-(6, '23', '05111640000041_IvandaZeviAmalia2.pdf', '2019-04-03 21:11:39');
+INSERT INTO `berkas_bimbingan` (`id`, `nim`, `filename`, `date`) VALUES
+(11, '23', 'Team_4_Project_Risk_Management22.pdf', '2024-12-15 01:35:25');
 
 -- --------------------------------------------------------
 
@@ -51,7 +50,7 @@ INSERT INTO `berkas_bimbingan` (`id`, `nrp`, `filename`, `date`) VALUES
 CREATE TABLE `bidangminat` (
   `id` int(11) NOT NULL,
   `nama` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `bidangminat`
@@ -70,17 +69,17 @@ INSERT INTO `bidangminat` (`id`, `nama`) VALUES
 
 CREATE TABLE `bukti_bimbingan` (
   `id` int(11) NOT NULL,
-  `nrp` text NOT NULL,
+  `nim` text NOT NULL,
   `filename` text NOT NULL,
   `date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `bukti_bimbingan`
 --
 
-INSERT INTO `bukti_bimbingan` (`id`, `nrp`, `filename`, `date`) VALUES
-(6, '23', '7978043.jpg', '2019-04-03 21:11:39');
+INSERT INTO `bukti_bimbingan` (`id`, `nim`, `filename`, `date`) VALUES
+(10, '23', 'Logo_Resmi_UII_Putih.png', '2024-12-15 01:35:25');
 
 -- --------------------------------------------------------
 
@@ -91,7 +90,7 @@ INSERT INTO `bukti_bimbingan` (`id`, `nrp`, `filename`, `date`) VALUES
 CREATE TABLE `pengajuan_judul` (
   `id` int(11) NOT NULL,
   `nama` text NOT NULL,
-  `nrp` text NOT NULL,
+  `nim` text NOT NULL,
   `judul` text NOT NULL,
   `bidangminat` text NOT NULL,
   `berkas` text NOT NULL,
@@ -101,14 +100,14 @@ CREATE TABLE `pengajuan_judul` (
   `info` text NOT NULL,
   `dosbing1` text NOT NULL,
   `dosbing2` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `pengajuan_judul`
 --
 
-INSERT INTO `pengajuan_judul` (`id`, `nama`, `nrp`, `judul`, `bidangminat`, `berkas`, `tanggal`, `tanggalverif`, `status`, `info`, `dosbing1`, `dosbing2`) VALUES
-(9, 'Ivanda Zevi Amalia', '23', 'Desain dan Analisis Algoritma Optimasi Linier pada Penyelesaian Permasalahan SPOJ FN16ROAD - Road Times', 'Minat 1', '05111640000041_IvandaZeviAmalia2.pdf', '2019-04-03', '0000-00-00', 'tolak', 'Tolak', '100', '');
+INSERT INTO `pengajuan_judul` (`id`, `nama`, `nim`, `judul`, `bidangminat`, `berkas`, `tanggal`, `tanggalverif`, `status`, `info`, `dosbing1`, `dosbing2`) VALUES
+(14, 'M. Trendo Rafly Dipu', '23', 'proposal', 'Minat 1', 'Team_4_Project_Risk_Management4.pdf', '2024-12-15', '2024-12-14', 'diterima', 'mantap', '100', '101');
 
 -- --------------------------------------------------------
 
@@ -119,7 +118,7 @@ INSERT INTO `pengajuan_judul` (`id`, `nama`, `nrp`, `judul`, `bidangminat`, `ber
 CREATE TABLE `pengajuan_sidang` (
   `id` int(11) NOT NULL,
   `nama` text NOT NULL,
-  `nrp` text NOT NULL,
+  `nim` text NOT NULL,
   `tanggal` date NOT NULL,
   `judul` text NOT NULL,
   `jam` time NOT NULL,
@@ -127,14 +126,14 @@ CREATE TABLE `pengajuan_sidang` (
   `penguji` text NOT NULL,
   `tglsidang` date NOT NULL,
   `nilai` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `pengajuan_sidang`
 --
 
-INSERT INTO `pengajuan_sidang` (`id`, `nama`, `nrp`, `tanggal`, `judul`, `jam`, `status`, `penguji`, `tglsidang`, `nilai`) VALUES
-(6, 'Ivanda Zevi Amalia', '23', '2019-04-03', 'Desain dan Analisis Algoritma Optimasi Linier pada Penyelesaian Permasalahan SPOJ FN16ROAD - Road Times', '21:11:39', 'sidang', '102', '2019-04-06', '');
+INSERT INTO `pengajuan_sidang` (`id`, `nama`, `nim`, `tanggal`, `judul`, `jam`, `status`, `penguji`, `tglsidang`, `nilai`) VALUES
+(10, 'M. Trendo Rafly Dipu', '23', '2024-12-15', 'proposal', '01:35:25', 'done', '102', '2024-12-25', '100');
 
 -- --------------------------------------------------------
 
@@ -144,22 +143,22 @@ INSERT INTO `pengajuan_sidang` (`id`, `nama`, `nrp`, `tanggal`, `judul`, `jam`, 
 
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
-  `nrp` text NOT NULL,
+  `nim` text NOT NULL,
   `password` text NOT NULL,
   `nama` text NOT NULL,
   `gender` text NOT NULL,
   `tipe` text NOT NULL,
   `photo` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`id`, `nrp`, `password`, `nama`, `gender`, `tipe`, `photo`) VALUES
-(1, '23', 'user', 'Ivanda Zevi Amalia', 'perempuan', 'mahasiswa', 'sCHnNJUS5vP0mz9.png'),
+INSERT INTO `user` (`id`, `nim`, `password`, `nama`, `gender`, `tipe`, `photo`) VALUES
+(1, '23', 'user', 'M. Trendo Rafly Dipu', 'lakilaki', 'mahasiswa', 'sCHnNJUS5vP0mz9.png'),
 (2, '100', 'dosen', 'Pak Dosen', 'lakilaki', 'dosen', 'user.png'),
-(3, 'rmk', 'admin', 'Tim Verifikasi RMK', 'lakilaki', 'rmk', 'user.png'),
+(3, 'rmk', 'admin', 'Koordinator Tugas Akhir', 'lakilaki', 'rmk', 'user.png'),
 (4, 'kaprodi', 'admin', 'Kaprodi', 'lakilaki', 'kaprodi', 'user.png'),
 (5, '101', 'dosen', 'Pak Dosen 2', 'lakilaki', 'dosen', 'user.png'),
 (7, '102', 'dosen', 'pak dosen 3', 'lakilaki', 'dosen', '');
@@ -212,7 +211,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `berkas_bimbingan`
 --
 ALTER TABLE `berkas_bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `bidangminat`
@@ -224,19 +223,19 @@ ALTER TABLE `bidangminat`
 -- AUTO_INCREMENT untuk tabel `bukti_bimbingan`
 --
 ALTER TABLE `bukti_bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengajuan_judul`
 --
 ALTER TABLE `pengajuan_judul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengajuan_sidang`
 --
 ALTER TABLE `pengajuan_sidang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
