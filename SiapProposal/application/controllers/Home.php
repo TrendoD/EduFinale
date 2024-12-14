@@ -18,9 +18,36 @@ class Home extends CI_Controller {
 		$this->load->model('Sesi_m', 'sesi');
 		$this->load->model('User_m', 'userdatabase');
 		$this->load->model('Counter_m', 'counter');
+		
+		// Validate login first
 		$this->sesi->validate_login();
+		
+		// Set timezone
 		date_default_timezone_set('Asia/Jakarta');
-		$this->user = $this->db->get_where('user', array('nim' => $_SESSION['nim']))->row();
+		
+		// Check if session exists using CI session
+		if (!$this->session->userdata('nim')) {
+			$this->session->set_flashdata('error', 'Session expired. Please login again.');
+			redirect('masuk');
+			return;
+		}
+		
+		// Get user data and handle null case
+		$user = $this->db->get_where('user', ['nim' => $this->session->userdata('nim')])->row();
+		
+		if (!$user) {
+			$this->session->set_flashdata('error', 'User profile not found');
+			$this->session->sess_destroy();
+			redirect('masuk');
+			return;
+		}
+		
+		// Set default photo if not set
+		if (!isset($user->photo)) {
+			$user->photo = 'default.jpg';
+		}
+		
+		$this->user = $user;
 	}
 
 
@@ -78,14 +105,36 @@ class Home extends CI_Controller {
 		if ($param != NULL) {
 			switch ($param) {
 				case 'updateData':
+					if (!$this->input->post('nim') || !$this->input->post('nama')) {
+						redirect(base_url().'home/profil/?error=incomplete','refresh');
+						return;
+					}
+					
 					$newdata = array();
 					$newdata['nama'] = $this->input->post('nama');
 					$newdata['gender'] = $this->input->post('gender');
 					$newdata['nim'] = $this->input->post('nim');
 					$newdata['password'] = $this->input->post('password');
+					
+					// Validate if new NIM already exists for different user
+					if ($newdata['nim'] !== $_SESSION['nim']) {
+						$existing = $this->db->get_where('user', array('nim' => $newdata['nim']))->row();
+						if ($existing) {
+							redirect(base_url().'home/profil/?error=nim_exists','refresh');
+							return;
+						}
+					}
+					
 					$this->db->where('nim', $_SESSION['nim']);
-					$this->db->update('user', $newdata);
-					redirect(base_url().'home/profil/?success=data','refresh');
+					if ($this->db->update('user', $newdata)) {
+						// Update session with new NIM if changed
+						if ($newdata['nim'] !== $_SESSION['nim']) {
+							$_SESSION['nim'] = $newdata['nim'];
+						}
+						redirect(base_url().'home/profil/?success=data','refresh');
+					} else {
+						redirect(base_url().'home/profil/?error=update_failed','refresh');
+					}
 					break;
 
 				case 'uploadPhoto':

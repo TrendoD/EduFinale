@@ -76,11 +76,11 @@ function tgl($time) {
                                     <h4><i class="fa fa-exchange fa-fw"></i> Perlu Ditinjau</h4>
                                 </div>
                                 <div class="portlet-widgets">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#perluDitinjauPortlet"><i class="fa fa-chevron-down"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div id="transactionsPortlet" class="panel-collapse collapse in">
+                            <div id="perluDitinjauPortlet" class="panel-collapse collapse in">
                                 <div class="portlet-body">
                                     <div class="table-responsive dashboard-demo-table">
                                         <table class="table table-bordered table-striped table-hover">
@@ -124,11 +124,11 @@ function tgl($time) {
                                     <h4><i class="fa fa-exchange fa-fw"></i> Perlu Input Nilai</h4>
                                 </div>
                                 <div class="portlet-widgets">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#perluInputNilaiPortlet"><i class="fa fa-chevron-down"></i></a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-                            <div id="transactionsPortlet" class="panel-collapse collapse in">
+                            <div id="perluInputNilaiPortlet" class="panel-collapse collapse in">
                                 <div class="portlet-body">
                                     <div class="table-responsive dashboard-demo-table">
                                         <table class="table table-bordered table-striped table-hover">
@@ -201,3 +201,15 @@ function tgl($time) {
     <!-- /#wrapper -->
 
     <!-- GLOBAL SCRIPTS -->
+    <script>
+    $(document).ready(function() {
+        // Initialize both panels as expanded
+        $('#perluDitinjauPortlet').collapse('show');
+        $('#perluInputNilaiPortlet').collapse('show');
+
+        // Prevent collapse events from propagating to other panels
+        $('#perluDitinjauPortlet, #perluInputNilaiPortlet').on('show.bs.collapse hide.bs.collapse', function(e) {
+            e.stopPropagation();
+        });
+    });
+    </script>

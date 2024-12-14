@@ -57,30 +57,35 @@
                                                 <div class="form-group">
                                                     <label for="textInput" class="col-sm-2 control-label">Nama</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="nama" name="nama" value="<?=$data->nama;?>" required>
+                                                        <input type="text" class="form-control" id="nama" name="nama" 
+                                                               value="<?php echo isset($data->nama) ? htmlspecialchars($data->nama) : ''; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label">Jenis Kelamin</label>
                                                     <div class="col-sm-10">
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="gender" value="lakilaki" <?php echo ($data->gender == 'lakilaki') ? 'checked' : ''?>>Laki - Laki
+                                                            <input type="radio" name="gender" value="lakilaki" 
+                                                                   <?php echo (isset($data->gender) && $data->gender == 'lakilaki') ? 'checked' : ''?>>Laki - Laki
                                                         </label>
                                                         <label class="radio-inline">
-                                                            <input type="radio" name="gender" value="perempuan" <?php echo ($data->gender == 'perempuan') ? 'checked' : ''?>>Perempuan
+                                                            <input type="radio" name="gender" value="perempuan" 
+                                                                   <?php echo (isset($data->gender) && $data->gender == 'perempuan') ? 'checked' : ''?>>Perempuan
                                                         </label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textInput" class="col-sm-2 control-label">NIM / Username</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="nim" name="nim" value="<?=$data->nim;?>" required>
+                                                        <input type="text" class="form-control" id="nim" name="nim" 
+                                                               value="<?php echo isset($data->nim) ? htmlspecialchars($data->nim) : ''; ?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="textInputDisabled" class="col-sm-2 control-label">Password</label>
                                                     <div class="col-sm-10">
-                                                        <input type="password" class="form-control" id="password" name="password" value="<?=$data->password;?>" required>
+                                                        <input type="password" class="form-control" id="password" name="password" 
+                                                               value="<?php echo isset($data->password) ? htmlspecialchars($data->password) : ''; ?>" required>
                                                     </div>
                                                 </div>
                                                 <br>
@@ -160,11 +165,36 @@
                                                     <strong>Gagal : </strong> Gagal mengubah foto profil
                                                 </div>
                                                 ';
+                                            } else if ($error == 'incomplete') {
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <strong>Error:</strong> Please fill in all required fields
+                                                      </div>';
+                                            } else if ($error == 'nim_exists') {
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <strong>Error:</strong> The NIM/Username is already in use
+                                                      </div>';
+                                            } else if ($error == 'update_failed') {
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <strong>Error:</strong> Failed to update profile. Please try again.
+                                                      </div>';
+                                            } else if ($error == 'invalid_input') {
+                                                echo '<div class="alert alert-danger alert-dismissable">
+                                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                                        <strong>Error:</strong> Invalid input detected. Please check your data.
+                                                      </div>';
                                             }
                                             ?>
                                             
                                             <center>
-                                                <img class="img-circle" style="max-height: 250px;max-width: 250px;" src="/img/profile/<?=$data->photo;?>" alt="">
+                                                <img class="img-circle" 
+                                                     style="max-height: 250px; max-width: 250px;" 
+                                                     src="/img/profile/<?= $data->photo ?? 'default.jpg' ?>"
+                                                     alt="Profile Photo"
+                                                     loading="lazy"
+                                                     onerror="this.src='/img/profile/default.jpg'">
 
                                             <form action="/home/profil/uploadPhoto" method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
@@ -206,3 +236,10 @@
     <!-- /#wrapper -->
 
     <!-- GLOBAL SCRIPTS -->
+
+    <style>
+        .profile-photo {
+            max-height: 250px;
+            max-width: 250px;
+        }
+    </style>
