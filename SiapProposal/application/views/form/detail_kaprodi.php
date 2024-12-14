@@ -7,9 +7,9 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function namaDosen($arr, $nrp) {
+function namaDosen($arr, $nim) {
     foreach ($arr->result() as $row) {
-        if ($row->nrp == $nrp) {
+        if ($row->nim == $nim) {
             return $row->nama;
         }
     }
@@ -107,9 +107,9 @@ function namaDosen($arr, $nrp) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-3 control-label">NRP</label>
+                                                    <label for="textInput" class="col-sm-3 control-label">NIM</label>
                                                     <div class="col-sm-9">
-                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nrp?></label>
+                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->nim?></label>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -192,7 +192,7 @@ function namaDosen($arr, $nrp) {
                                         <div class="portlet-body">
                                             <div class="form-horizontal">
                                                 <form id="frm" action="/aksi/Kaprodi" method="post">
-                                                    <input type="hidden" name="nrp" value="<?=$detail->nrp?>">
+                                                    <input type="hidden" name="nim" value="<?=$detail->nim?>">
                                                     <input type="hidden" name="id" value="<?=$detail->id?>">
                                                     
                                                     <div class="form-group">
@@ -203,7 +203,7 @@ function namaDosen($arr, $nrp) {
                                                                     <option selected disabled hidden>Pilih Dosen</option>
                                                                     <?php
                                                                     foreach ($dosen->result() as $row) {
-                                                                        echo "<option value='$row->nrp'>$row->nama - $row->nrp</option>";
+                                                                        echo "<option value='$row->nim'>$row->nama - $row->nim</option>";
                                                                     }
                                                                     ?>
                                                                     

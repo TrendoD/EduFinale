@@ -7,9 +7,9 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function namaDosen($arr, $nrp) {
+function namaDosen($arr, $nim) {
     foreach ($arr->result() as $row) {
-        if ($row->nrp == $nrp) {
+        if ($row->nim == $nim) {
             return $row->nama;
         }
     }
@@ -92,9 +92,9 @@ function namaDosen($arr, $nrp) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-2 control-label">NRP</label>
+                                                    <label for="textInput" class="col-sm-2 control-label">NIM</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" disabled class="form-control disabled" id="nrp" value="<?=$data->nrp?>" name="nrp" required>
+                                                        <input type="text" disabled class="form-control disabled" id="nim" value="<?=$data->nim?>" name="nim" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -127,7 +127,7 @@ function namaDosen($arr, $nrp) {
                                                                     <option selected disabled hidden>Pilih Dosen</option>
                                                                     <?php
                                                                     foreach ($listdosen->result() as $row) {
-                                                                        echo "<option value='$row->nrp'>$row->nama - $row->nrp</option>";
+                                                                        echo "<option value='$row->nim'>$row->nama - $row->nim</option>";
                                                                     }
                                                                     ?>
                                                                     
@@ -280,7 +280,7 @@ function namaDosen($arr, $nrp) {
 
                                         <form id="frmDelete" action="/pengajuan/hapus" method="post">
                                             <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="nrp" value="<?=$data->nrp?>">
+                                            <input type="hidden" name="nim" value="<?=$data->nim?>">
                                         </form>
                                             <!--
                                             <div class="table-responsive dashboard-demo-table">

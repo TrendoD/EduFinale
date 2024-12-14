@@ -4,36 +4,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User_m extends CI_Model {
 
 	public function insert($data) {
-		$nrp = $data['nrp'];
-		$password = $data['password'];
-		$nama = $data['nama'];
-		$gender = $data['gender'];
-		$query = "INSERT INTO `user` (`id`, `nrp`, `password`, `nama`, `gender`, `status`) VALUES (NULL, ?, ?, ?, ?, ?);";
-		$this->db->query($query, array($email, $password, $nama, $jeniskelamin, "mahasiswa"));
+		$insert_data = array(
+			'nim' => $data['nim'],
+			'password' => $data['password'],
+			'nama' => $data['nama'],
+			'gender' => $data['gender'],
+			'status' => 'mahasiswa'
+		);
+		
+		return $this->db->insert('user', $insert_data);
 	}
 
 	public function get($data) {
-		$nrp = $data['nrp'];
-		$query = "SELECT * FROM `user` WHERE `nrp` LIKE ? ;";
-		$result = $this->db->query($query, array($nrp));
-		$row = $result->row();
-
-		if (isset($row)){
-			return $row;
-		}else{
-			return (object)array('error'=>'1');
-		}
+		$result = $this->db->where('nim', $data['nim'])
+						  ->get('user')
+						  ->row();
+						  
+		return isset($result) ? $result : (object)array('error'=>'1');
 	}
 
-	public function data($nro) {
-		$query = "SELECT * FROM `nrp` WHERE `email` LIKE ?;";
-		$result = $this->db->query($query, array($nrp));
-		$row = $result->row();
-		if (isset($row)){
-			return $row;
-		}else{
-			return (object)array('error'=>'1');
-		}
+	public function data($nim) {
+		$result = $this->db->where('nim', $nim)
+						  ->get('user')
+						  ->row();
+						  
+		return isset($result) ? $result : (object)array('error'=>'1');
 	}
 
 

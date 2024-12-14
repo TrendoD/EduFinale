@@ -8,7 +8,7 @@ class Aksi extends CI_Controller {
 		$this->load->model('Sesi_m', 'sesi');
 		$this->load->model('User_m', 'userdatabase');
 		$this->sesi->validate_login();
-		$this->user = $this->db->get_where('user', array('nrp'=>$_SESSION['nrp']))->row();
+		$this->user = $this->db->get_where('user', array('nim'=>$_SESSION['nim']))->row();
 	}
 
 	public function index() {
@@ -20,30 +20,30 @@ class Aksi extends CI_Controller {
 
 		$action = $this->input->post('action');
 		$id = $this->input->post('id');
-		$nrp = $this->input->post('nrp');
+		$nim = $this->input->post('nim');
 		$info = $this->input->post('info');
 		$newdata = array();
 
-		if ($id=="" || $nrp=="") redirect('/home','refresh');
+		if ($id=="" || $nim=="") redirect('/home','refresh');
 
 		if ($action=="terima") {
 			$newdata['status'] = 'pendingKaprodi';
 			$newdata['info'] = $info;
 			$newdata['tanggalverif'] = date("Y-m-d");
-			$this->db->where(array('nrp'=>$nrp, 'id'=>$id));
+			$this->db->where(array('nim'=>$nim, 'id'=>$id));
 			$this->db->update('pengajuan_judul', $newdata);
 			redirect('/pengajuan/rmk','refresh');
 
 		} elseif ($action=="tolak") {
 			$newdata['status'] = 'tolak';
 			$newdata['info'] = $info;
-			$this->db->where(array('nrp'=>$nrp, 'id'=>$id));
+			$this->db->where(array('nim'=>$nim, 'id'=>$id));
 			$this->db->update('pengajuan_judul', $newdata);
 			redirect('/pengajuan/rmk','refresh');
 		} elseif ($action=="revisi") {
 			$newdata['status'] = 'revisi';
 			$newdata['info'] = $info;
-			$this->db->where(array('nrp'=>$nrp, 'id'=>$id));
+			$this->db->where(array('nim'=>$nim, 'id'=>$id));
 			$this->db->update('pengajuan_judul', $newdata);
 			redirect('/pengajuan/rmk','refresh');
 		}
@@ -54,13 +54,13 @@ class Aksi extends CI_Controller {
 		
 		$action = $this->input->post('action');
 		$id = $this->input->post('id');
-		$nrp = $this->input->post('nrp');
+		$nim = $this->input->post('nim');
 		$dosen2 = $this->input->post('pilihandosen2');
 		$newdata = array();
 		$newdata['dosbing2'] = $dosen2;
 		$newdata['status'] = 'diterima';
 		
-		$this->db->where(array('id'=>$id, 'nrp'=>$nrp));
+		$this->db->where(array('id'=>$id, 'nim'=>$nim));
 		$this->db->update('pengajuan_judul', $newdata);
 		redirect('/pengajuan/kaprodi','refresh');
 	}

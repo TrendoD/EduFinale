@@ -2066,3 +2066,77 @@ input[type="checkbox"]:checked::after,
         margin-left: 0;
     }
 }
+
+/*
+Custom 
+*/
+/* Table Styles */
+.table {
+    width: 100%;
+    margin-bottom: 0;
+    background-color: #fff;
+    border-collapse: collapse;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > td {
+    padding: 8px;
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
+
+.table > thead > tr > th {
+    background-color: #f5f5f5;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Column widths */
+.table > thead > tr > th:nth-child(1),
+.table > tbody > tr > td:nth-child(1) {
+    width: 5%;
+}
+
+.table > thead > tr > th:nth-child(2),
+.table > tbody > tr > td:nth-child(2) {
+    width: 15%;
+}
+
+.table > thead > tr > th:nth-child(3),
+.table > tbody > tr > td:nth-child(3) {
+    width: 10%;
+}
+
+.table > thead > tr > th:nth-child(4),
+.table > tbody > tr > td:nth-child(4) {
+    width: 50%;
+}
+
+.table > thead > tr > th:nth-child(5),
+.table > tbody > tr > td:nth-child(5) {
+    width: 20%;
+}
+
+/* Table container */
+.table-responsive {
+    margin: 0;
+    padding: 0;
+}
+
+/* Button styles */
+.btn {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border-radius: 4px;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}

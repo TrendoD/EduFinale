@@ -7,10 +7,10 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function formPost($id, $nrp) {
+function formPost($id, $nim) {
     return '
     <form method="post" action="/sidang/detail">
-      <button class="btn btn-xs btn-orange"><input type="hidden" name="id" value="'.$id.'"><input type="hidden" name="nrp" value="'.$nrp.'"><i class="fa fa-arrow-circle-o-right"></i> Lihat Detail</button>
+      <button class="btn btn-xs btn-orange"><input type="hidden" name="id" value="'.$id.'"><input type="hidden" name="nim" value="'.$nim.'"><i class="fa fa-arrow-circle-o-right"></i> Lihat Detail</button>
     </form>
     ';
 }
@@ -103,7 +103,7 @@ function tgl($time) {
                                                     <td>{$row->nama}</td>
                                                     <td>{$row->judul}</td>
                                                     <td>".tgl($row->tanggal)."</td>
-                                                    <td>".formPost($row->id, $row->nrp)."</td>
+                                                    <td>".formPost($row->id, $row->nim)."</td>
                                                     </tr>
                                                     ";
                                                 }
@@ -151,7 +151,7 @@ function tgl($time) {
                                                     <td>{$row->nama}</td>
                                                     <td>{$row->judul}</td>
                                                     <td>".tgl($row->tanggal)."</td>
-                                                    <td>".formPost($row->id, $row->nrp)."</td>
+                                                    <td>".formPost($row->id, $row->nim)."</td>
                                                     </tr>
                                                     ";
                                                 }

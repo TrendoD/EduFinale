@@ -4,22 +4,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Counter_m extends CI_Model {
 	/* MAHASISWA */
 	public function mahasiswa_formulir() {
-		return $this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp']))->num_rows();
+		return $this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim']))->num_rows();
 	}
 
 	public function mahasiswa_terima() {
-		return $this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp'], 'status'=>'diterima'))->num_rows();
+		return $this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim'], 'status'=>'diterima'))->num_rows();
 	}
 
 	public function mahasiswa_tinjau() {
-		$this->db->where('nrp', $_SESSION['nrp']);
+		$this->db->where('nim', $_SESSION['nim']);
 		$this->db->where('status', 'pending');
 		$this->db->or_where('status', 'pendingKaprodi');
 		return $this->db->get('pengajuan_judul')->num_rows();
 	}
 
 	public function mahasiswa_tolak() {
-		return $this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp'], 'status'=>'tolak'))->num_rows();
+		return $this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim'], 'status'=>'tolak'))->num_rows();
 	}
 
 	/* RMK */
@@ -61,8 +61,8 @@ class Counter_m extends CI_Model {
 
 	/* DOSEN */
 	public function dosen_counter() {
-		$this->db->where('dosbing1', $_SESSION['nrp']);
-		$this->db->or_where('dosbing2', $_SESSION['nrp']);
+		$this->db->where('dosbing1', $_SESSION['nim']);
+		$this->db->or_where('dosbing2', $_SESSION['nim']);
 		return $this->db->get('pengajuan_judul')->num_rows();
 	}
 }

@@ -7,10 +7,14 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function formPost($id) {
+function formPost($id, $nim) {
     return '
     <form method="post" action="/detail">
-      <button class="btn btn-xs btn-orange"><input type="hidden" name="id" value="'.$id.'"><i class="fa fa-arrow-circle-o-right"></i> Lihat Detail</button>
+      <button class="btn btn-xs btn-orange">
+        <input type="hidden" name="id" value="'.$id.'">
+        <input type="hidden" name="nim" value="'.$nim.'">
+        <i class="fa fa-arrow-circle-o-right"></i> Lihat Detail
+      </button>
     </form>
     ';
 }
@@ -111,7 +115,7 @@ function formPost($id) {
                                                             foreach ($tabel_key as $key) {
                                                                 echo "<td>{$row->$key}</td>";
                                                             }
-                                                            echo "<td>".formPost($row->id)."</td>";
+                                                            echo "<td>".formPost($row->id, $row->nim)."</td>";
                                                             echo "</tr>";
                                                         }
                                                         ?>

@@ -20,7 +20,7 @@ class Home extends CI_Controller {
 		$this->load->model('Counter_m', 'counter');
 		$this->sesi->validate_login();
 		date_default_timezone_set('Asia/Jakarta');
-		$this->user = $this->db->get_where('user', array('nrp' => $_SESSION['nrp']))->row();
+		$this->user = $this->db->get_where('user', array('nim' => $_SESSION['nim']))->row();
 	}
 
 
@@ -81,9 +81,9 @@ class Home extends CI_Controller {
 					$newdata = array();
 					$newdata['nama'] = $this->input->post('nama');
 					$newdata['gender'] = $this->input->post('gender');
-					$newdata['nrp'] = $this->input->post('nrp');
+					$newdata['nim'] = $this->input->post('nim');
 					$newdata['password'] = $this->input->post('password');
-					$this->db->where('nrp', $_SESSION['nrp']);
+					$this->db->where('nim', $_SESSION['nim']);
 					$this->db->update('user', $newdata);
 					redirect(base_url().'home/profil/?success=data','refresh');
 					break;
@@ -97,7 +97,7 @@ class Home extends CI_Controller {
                 		$full_path = $this->upload->data('full_path');
                 		$rand_name = generateRandomString(15);
                 		rename($full_path, './img/profile/'.$rand_name.$ext);
-                		$this->db->where('nrp', $_SESSION['nrp']);
+                		$this->db->where('nim', $_SESSION['nim']);
                 		$this->db->update('user', array('photo'=>$rand_name.$ext));
                         redirect('/home/profil?success=photo','refresh');
                 	}else{

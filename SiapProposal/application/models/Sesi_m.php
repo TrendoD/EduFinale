@@ -5,7 +5,7 @@ class Sesi_m extends CI_Model {
 
 	public function start($data) {
 		$_SESSION['login'] = 1;
-		$_SESSION['nrp'] = $data['nrp'];
+		$_SESSION['nim'] = $data['nim'];
 		$_SESSION['nama'] = $data['nama'];
 		$_SESSION['status'] = $data['status'];
 	}

@@ -10,21 +10,41 @@ class Masuk extends CI_Controller {
 	}
 
 	public function index(){
-		if ($this->sesi->check()) exit(header("Location: ".base_url()."home"));
+		if ($this->sesi->check()) {
+			redirect('home');
+		}
 		$this->load->view('masuk_page');
 	}
 
 	public function process() {
 		$this->load->model('User_m','userdata');
-		$nrp = $this->input->post('nrp');
-		$password = $this->input->post('password');
-		//$result = $this->userdata->get(array('noktp'=>$noktp,'password'=>$password));
-		$res = $this->db->get_where('user', array('nrp'=>$nrp, 'password'=>$password))->row();
-		if (isset($res)) {
-			$this->sesi->start(array('nrp'=>$res->nrp, 'nama'=>$res->nama,'status'=>$res->status));
-			header("Location: ".base_url()."home");
-		}else{
-			header("Location: ".base_url()."masuk?error=1");
+		
+		// Get POST data and sanitize inputs
+		$nim = $this->input->post('nim', TRUE);
+		$password = $this->input->post('password', TRUE);
+		
+		// Validate required fields
+		if (empty($nim) || empty($password)) {
+			redirect('masuk?error=2');
+		}
+
+		// Use Query Builder for better security
+		$res = $this->db->where('nim', $nim)
+					   ->where('password', $password)
+					   ->get('user')
+					   ->row();
+					   
+		if ($res) {
+			$session_data = array(
+				'nim' => $res->nim,
+				'nama' => $res->nama,
+				'status' => $res->status
+			);
+			
+			$this->sesi->start($session_data);
+			redirect('home');
+		} else {
+			redirect('masuk?error=1');
 		}
 	}
 

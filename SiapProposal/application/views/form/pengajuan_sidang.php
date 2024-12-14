@@ -7,9 +7,9 @@ function status($status) {
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
 
-function namaDosen($arr, $nrp) {
+function namaDosen($arr, $nim) {
     foreach ($arr->result() as $row) {
-        if ($row->nrp == $nrp) {
+        if ($row->nim == $nim) {
             return $row->nama;
         }
     }
@@ -103,11 +103,11 @@ function jam($time) {
                                             <h4>Rincian Informasi</h4>
                                         </div>
                                         <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#formControls"><i class="fa fa-chevron-down"></i></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#infoControls"><i class="fa fa-chevron-down"></i></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div id="formControls" class="panel-collapse collapse in">
+                                    <div id="infoControls" class="panel-collapse collapse in">
                                         <div class="portlet-body">
                                             <form id="frm" action="/pengajuan/sidang/add" method="post" enctype="multipart/form-data">
                                             <div class="form-horizontal">
@@ -120,9 +120,9 @@ function jam($time) {
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-2 control-label">NRP</label>
+                                                    <label for="textInput" class="col-sm-2 control-label">NIM</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" disabled class="form-control disabled" id="nrp" value="<?=$data->nrp?>" name="nrp" required>
+                                                        <input type="text" disabled class="form-control disabled" id="nim" value="<?=$data->nim?>" name="nim" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -251,7 +251,7 @@ function jam($time) {
 
                                         <form id="frmDelete" action="/pengajuan/hapus" method="post">
                                             <input type="hidden" name="action" value="delete">
-                                            <input type="hidden" name="nrp" value="<?=$data->nrp?>">
+                                            <input type="hidden" name="nim" value="<?=$data->nim?>">
                                         </form>
                                             <?php
                                             if ($count > 0) {
@@ -326,11 +326,11 @@ function jam($time) {
                                             <h4>Bukti Bimbingan</h4>
                                         </div>
                                         <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#formControls"><i class="fa fa-chevron-down"></i></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#guidanceControls"><i class="fa fa-chevron-down"></i></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div id="formControls" class="panel-collapse collapse in">
+                                    <div id="guidanceControls" class="panel-collapse collapse in">
                                         <div class="portlet-body">
                                             <div class="table-responsive dashboard-demo-table">
                                                 <table class="table table-bordered table-striped table-hover">
@@ -379,58 +379,51 @@ function jam($time) {
                                             <h4>Softfile Buku</h4>
                                         </div>
                                         <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#formControls"><i class="fa fa-chevron-down"></i></a>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#bookControls"><i class="fa fa-chevron-down"></i></a>
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>
-                                    <div id="formControls" class="panel-collapse collapse in">
+                                    <div id="bookControls" class="panel-collapse collapse in">
                                         <div class="portlet-body">
-                                            <?php if($detail->status == "revisi") {
-                                                    ?>
-                                                    <form action="/sidang/revisi/upload/" method="post" enctype="multipart/form-data">
-                                                        <div class="form-inline">
-                                                            <div class="form-group">
-                                                                <label for="exampleInputFile" class="col-sm-3 control-label">Revisi Buku Skripsi</label>
-                                                                <div class="col-sm-9">
-                                                                    <input type="file" id="berkaspdf" name="berkaspdf" required>
-                                                                    <p class="help-block">Unggah buku skripsi dalam bentuk PDF / Word. <br>Format yang diperbolehkan : PDF, DOCX, DOC</p>
-                                                                </div> 
-                                                            </div>
-                                                            <div class="form-group" >
-                                                                <button type="submit" class="btn btn-info ">Unggah</button>
-                                                            </div>
+                                            <?php if($detail->status == "revisi") { ?>
+                                                <form action="/sidang/revisi/upload/" method="post" enctype="multipart/form-data">
+                                                    <div class="form-inline" style="margin-bottom: 10px;">
+                                                        <div class="form-group">
+                                                            <input type="file" id="berkaspdf" name="berkaspdf" required style="display: inline-block; margin-right: 10px;">
+                                                            <button type="submit" class="btn btn-info">Unggah</button>
                                                         </div>
-                                                    </form>
-                                                    <?php
-                                                }
-                                                ?>
+                                                    </div>
+                                                </form>
+                                            <?php } ?>
 
-                                            <hr>
                                             <div class="table-responsive dashboard-demo-table">
                                                 <table class="table table-bordered table-striped table-hover">
-                                                    <th>No</th>
-                                                    <th>Tanggal</th>
-                                                    <th>Jam</th>
-                                                    <th>Nama File</th>
-                                                    <th>Unduh</th>
-
-                                                    <?php
-                                                    $count = 0;
-                                                    foreach ($berkas as $row) {
-                                                        $count++;
-                                                        echo "
+                                                    <thead>
                                                         <tr>
-                                                            <td>{$count}</td>
-                                                            <td>".tgl($row->date)."</td>
-                                                            <td>".jam($row->date)."</td>
-                                                            <td>{$row->filename}</td>
-                                                            <td><a download href='/buku/{$row->filename}' role='button' class='btn btn-info btn-sm'><i class='fa fa-download'></i> Unduh</a> <a href='/sidang/revisi/delete/buku/{$row->filename}' role='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i> Hapus</a></td>
-                                                        </tr>";
-                                                    }
-                                                    ?>
+                                                            <th>No</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Jam</th>
+                                                            <th>Nama File</th>
+                                                            <th>Unduh</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+                                                        $count = 0;
+                                                        foreach ($berkas as $row) {
+                                                            $count++;
+                                                            echo "
+                                                            <tr>
+                                                                <td>{$count}</td>
+                                                                <td>".tgl($row->date)."</td>
+                                                                <td>".jam($row->date)."</td>
+                                                                <td>{$row->filename}</td>
+                                                                <td><a download href='/buku/{$row->filename}' role='button' class='btn btn-info btn-sm'><i class='fa fa-download'></i> Unduh</a> <a href='/sidang/revisi/delete/buku/{$row->filename}' role='button' class='btn btn-danger btn-sm'><i class='fa fa-trash-o'></i> Hapus</a></td>
+                                                            </tr>";
+                                                        }
+                                                        ?>
+                                                    </tbody>
                                                 </table>
-
-                                                
                                             </div>
                                         </div>
                                     </div>

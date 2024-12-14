@@ -72,9 +72,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="textInput" class="col-sm-2 control-label">NRP / Username</label>
+                                                    <label for="textInput" class="col-sm-2 control-label">NIM / Username</label>
                                                     <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="nrp" name="nrp" value="<?=$data->nrp;?>" required>
+                                                        <input type="text" class="form-control" id="nim" name="nim" value="<?=$data->nim;?>" required>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

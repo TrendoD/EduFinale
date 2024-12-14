@@ -8,7 +8,7 @@ class Pengajuan extends CI_Controller {
 		$this->load->model('Sesi_m', 'sesi');
 		$this->load->model('User_m', 'userdatabase');
 		$this->sesi->validate_login();
-		$this->user = $this->db->get_where('user', array('nrp'=>$_SESSION['nrp']))->row();
+		$this->user = $this->db->get_where('user', array('nim'=>$_SESSION['nim']))->row();
 		date_default_timezone_set("Asia/Jakarta");
 	}
 
@@ -23,17 +23,17 @@ class Pengajuan extends CI_Controller {
 		$config = array();
 		$data = array(
 			'data'=>$this->user, 
-			'list'=>$this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp'])),
+			'list'=>$this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim'])),
 			'minat'=>$this->db->get('bidangminat'),
-			'detail'=>$this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp']))->row(),
-			'count'=>$this->db->get_where('pengajuan_judul', array('nrp'=>$_SESSION['nrp']))->num_rows(),
+			'detail'=>$this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim']))->row(),
+			'count'=>$this->db->get_where('pengajuan_judul', array('nim'=>$_SESSION['nim']))->num_rows(),
 			'success'=>$this->input->get('success'),
 			'error'=>$this->input->get('error'),
 			'listdosen'=>$this->db->get_where('user', array('tipe'=>'dosen'))
 		);
 		if ($param == "add") {
 			$arr['nama'] = $_SESSION['nama'];
-			$arr['nrp'] = $_SESSION['nrp'];
+			$arr['nim'] = $_SESSION['nim'];
 			$arr['judul'] = $this->input->post('judul');
 			$arr['tanggal'] = date("Y-m-d");
 			$arr['status'] = 'pending';
@@ -55,13 +55,13 @@ class Pengajuan extends CI_Controller {
         } elseif ($param == "revisi") {
 
         	if (isset($_FILES['berkas'])) {
-        		$nrp = $_SESSION['nrp'];
+        		$nim = $_SESSION['nim'];
         		$arr['judul'] = $this->input->post('judul');
         		$arr['status'] = 'pending';
 
         		if ($_FILES['berkas']['name'] == "") {
         			//Tidak Upload Berkas"      			        			
-        			$this->db->where('nrp', $nrp);
+        			$this->db->where('nim', $nim);
         			$this->db->update('pengajuan_judul', $arr);
 
         		} else {
@@ -75,7 +75,7 @@ class Pengajuan extends CI_Controller {
 		            	redirect('/pengajuan/judul?error=upload_file','refresh');
 		            } else {
 		            	$arr['berkas'] = $this->upload->data('file_name'); 
-		            	$this->db->where('nrp', $nrp);
+		            	$this->db->where('nim', $nim);
         				$this->db->update('pengajuan_judul', $arr);
 		            }
         		}
@@ -93,15 +93,26 @@ class Pengajuan extends CI_Controller {
 		if ($this->user->tipe != "mahasiswa") redirect('/home','refresh');
 
 		$arr = array();
+		
+		// Ambil data detail dan inisialisasi jika kosong
+		$detail = $this->db->get_where('pengajuan_sidang', array('nim'=>$_SESSION['nim']))->row();
+		if (!$detail) {
+			$detail = new stdClass();
+			$detail->status = '';
+			$detail->penguji = '';
+			$detail->tglsidang = '';
+			$detail->nilai = '';
+		}
+
 		$data = array(
 			'data'=>$this->user, 
-			'detail'=>$this->db->get_where('pengajuan_sidang', array('nrp'=>$_SESSION['nrp']))->row(),
-			'count'=>$this->db->get_where('pengajuan_sidang', array('nrp'=>$_SESSION['nrp']))->num_rows(),
+			'detail'=>$detail,
+			'count'=>$this->db->get_where('pengajuan_sidang', array('nim'=>$_SESSION['nim']))->num_rows(),
 			'success'=>$this->input->get('success'),
 			'error'=>$this->input->get('error'),
 			'listdosen'=>$this->db->get_where('user', array('tipe'=>'dosen')),
-			'scan'=>$this->db->get_where('bukti_bimbingan', array('nrp'=>$_SESSION['nrp']))->result(),
-			'berkas'=>$this->db->get_where('berkas_bimbingan', array('nrp'=>$_SESSION['nrp']))->result()
+			'scan'=>$this->db->get_where('bukti_bimbingan', array('nim'=>$_SESSION['nim']))->result(),
+			'berkas'=>$this->db->get_where('berkas_bimbingan', array('nim'=>$_SESSION['nim']))->result()
 		);
 
 		if ($param == "add") {
@@ -112,10 +123,10 @@ class Pengajuan extends CI_Controller {
 			$error = false;
 
 			$arr['nama'] = $_SESSION['nama'];
-			$arr['nrp'] = $_SESSION['nrp'];
+			$arr['nim'] = $_SESSION['nim'];
 			$arr['tanggal'] = date("Y-m-d");
 			$arr['jam'] = date("H:i:s");
-			$arr['judul'] = $this->db->get_where('pengajuan_judul', array('nrp' => $_SESSION['nrp']))->row()->judul;
+			$arr['judul'] = $this->db->get_where('pengajuan_judul', array('nim' => $_SESSION['nim']))->row()->judul;
 			$arr['status'] = 'pending';
 
 			$configScan['upload_path']          = './scan/';
@@ -130,7 +141,7 @@ class Pengajuan extends CI_Controller {
 			if ( ! $this->upload->do_upload('berkasttd')) {
 				$error = true;
 			} else {
-				$arrScan['nrp'] = $_SESSION['nrp'];
+				$arrScan['nim'] = $_SESSION['nim'];
 				$arrScan['filename'] = $this->upload->data('file_name'); 
 				$arrScan['date'] = date("Y-m-d H:i:s");
 			}
@@ -139,7 +150,7 @@ class Pengajuan extends CI_Controller {
 			if ( ! $this->upload->do_upload('berkaspdf')) {
 				$error = true;
 			} else {
-				$arrBuku['nrp'] = $_SESSION['nrp'];
+				$arrBuku['nim'] = $_SESSION['nim'];
 				$arrBuku['filename'] = $this->upload->data('file_name'); 
 				$arrBuku['date'] = date("Y-m-d H:i:s");
 			}
@@ -196,11 +207,11 @@ class Pengajuan extends CI_Controller {
 			'title'=>'Bimbingan Mahasiswa',
 			'data'=>$this->user, 
 			'tipe'=>'dosen',
-			$this->db->where('dosbing1', $this->user->nrp),
-			$this->db->or_where('dosbing2', $this->user->nrp),
+			$this->db->where('dosbing1', $this->user->nim),
+			$this->db->or_where('dosbing2', $this->user->nim),
 			'list'=>$this->db->get('pengajuan_judul'),
-			'tabel_header'=>array('Tanggal', 'Judul', 'Nama', 'NRP'),
-			'tabel_key'=>array('tanggal', 'judul', 'nama', 'nrp'),
+			'tabel_header'=>array('Tanggal', 'Judul', 'Nama', 'NIM'),
+			'tabel_key'=>array('tanggal', 'judul', 'nama', 'nim'),
 		);
 		$this->load->view('part/header', $data);
 		$this->load->view('form/daftar_pengajuan',$data);
@@ -209,10 +220,10 @@ class Pengajuan extends CI_Controller {
 
 	public function hapus() {
 		if ($this->user->tipe != "mahasiswa") redirect('/home','refresh');
-		$nrp = $this->input->post('nrp');
+		$nim = $this->input->post('nim');
 		$action = $this->input->post('action');
-		if ($nrp == $_SESSION['nrp']) {
-			$this->db->where(array('nrp'=>$_SESSION['nrp']));
+		if ($nim == $_SESSION['nim']) {
+			$this->db->where(array('nim'=>$_SESSION['nim']));
 			$this->db->delete('pengajuan_judul');
 			redirect('/pengajuan/judul','refresh');
 		} else {
