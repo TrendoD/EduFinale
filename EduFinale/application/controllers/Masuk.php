@@ -28,17 +28,17 @@ class Masuk extends CI_Controller {
 			redirect('masuk?error=2');
 		}
 
-		// Use Query Builder for better security
-		$res = $this->db->where('nim', $nim)
-					   ->where('password', $password)
-					   ->get('user')
-					   ->row();
+		// Get user data by NIM only (don't check password yet)
+		$user = $this->db->where('nim', $nim)
+						->get('user')
+						->row();
 					   
-		if ($res) {
+		// Verify if user exists and password matches
+		if ($user && password_verify($password, $user->password)) {
 			$session_data = array(
-				'nim' => $res->nim,
-				'nama' => $res->nama,
-				'status' => $res->status
+				'nim' => $user->nim,
+				'nama' => $user->nama,
+				'status' => $user->status
 			);
 			
 			$this->sesi->start($session_data);

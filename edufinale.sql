@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Des 2024 pada 07.17
+-- Waktu pembuatan: 18 Des 2024 pada 17.18
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.0.30
 
@@ -33,13 +33,6 @@ CREATE TABLE `berkas_bimbingan` (
   `filename` text NOT NULL,
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data untuk tabel `berkas_bimbingan`
---
-
-INSERT INTO `berkas_bimbingan` (`id`, `nim`, `filename`, `date`) VALUES
-(13, '23', 'Team_4_Project_Risk_Management23.pdf', '2024-12-16 13:16:35');
 
 -- --------------------------------------------------------
 
@@ -74,14 +67,6 @@ CREATE TABLE `bukti_bimbingan` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data untuk tabel `bukti_bimbingan`
---
-
-INSERT INTO `bukti_bimbingan` (`id`, `nim`, `filename`, `date`) VALUES
-(11, '23', 'Logo_Resmi_UII_Putih1.png', '2024-12-15 05:01:04'),
-(12, '23', 'Logo_Resmi_UII_Putih1.png', '2024-12-16 13:16:35');
-
 -- --------------------------------------------------------
 
 --
@@ -103,13 +88,6 @@ CREATE TABLE `pengajuan_judul` (
   `dosbing2` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
---
--- Dumping data untuk tabel `pengajuan_judul`
---
-
-INSERT INTO `pengajuan_judul` (`id`, `nama`, `nim`, `judul`, `bidangminat`, `berkas`, `tanggal`, `tanggalverif`, `status`, `info`, `dosbing1`, `dosbing2`) VALUES
-(15, 'M. Trendo Rafly Dipu', '23', 'Proposal', 'Minat 1', 'Team_4_Project_Risk_Management21.pdf', '2024-12-15', '2024-12-14', 'diterima', 'keren', '100', '101');
-
 -- --------------------------------------------------------
 
 --
@@ -128,13 +106,6 @@ CREATE TABLE `pengajuan_sidang` (
   `tglsidang` date NOT NULL,
   `nilai` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-
---
--- Dumping data untuk tabel `pengajuan_sidang`
---
-
-INSERT INTO `pengajuan_sidang` (`id`, `nama`, `nim`, `tanggal`, `judul`, `jam`, `status`, `penguji`, `tglsidang`, `nilai`) VALUES
-(11, 'M. Trendo Rafly Dipu', '23', '2024-12-15', 'Proposal', '05:01:04', 'done', '102', '2024-12-11', '94');
 
 -- --------------------------------------------------------
 
@@ -157,12 +128,14 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nim`, `password`, `nama`, `gender`, `tipe`, `photo`) VALUES
-(1, '23', 'user', 'M. Trendo Rafly Dipu', 'lakilaki', 'mahasiswa', '80BwbBMu1eybJhs.png'),
-(2, '100', 'dosen', 'Pak Dosen', 'lakilaki', 'dosen', 'user.png'),
-(3, 'rmk', 'admin', 'Koordinator Tugas Akhir', 'lakilaki', 'rmk', 'user.png'),
-(4, 'kaprodi', 'admin', 'Kaprodi', 'lakilaki', 'kaprodi', 'rTYIO6JRlgK9kot.png'),
-(5, '101', 'dosen', 'Pak Dosen 2', 'lakilaki', 'dosen', 'user.png'),
-(7, '102', 'dosen', 'pak dosen 3', 'lakilaki', 'dosen', '');
+(1, '23', '$2y$10$Eu79tISS2Gv6QOdxvyNPYuR0O5iPpUMpWC4Gmiy7cUxjDpC7CjozW', 'M. Trendo Rafly Dipu', 'lakilaki', 'mahasiswa', 'GndP4LkxktKIXok.png'),
+(2, '100', '$2y$10$jlUbXLASqHGcIKcRp63ty.kW.P2CDVc4Feb6.mXi.goG2f/14Q7jK', 'Pak Dosen', 'lakilaki', 'dosen', 'user.png'),
+(3, 'koordinator', '$2y$10$WqDykq1r2LA7Qy33gS3ulOwi/ayh.GT.G97w.HVdlzbmV9c/SCBJ6', 'Koordinator Tugas Akhir', 'lakilaki', 'rmk', 'user.png'),
+(4, 'kaprodi', '$2y$10$i7vi6Hc3GSy13fUHPqmKZ.kyCNjobmZPresa5Bzwn/E4QGFgmJRby', 'Kaprodi', 'lakilaki', 'kaprodi', 'rTYIO6JRlgK9kot.png'),
+(5, '101', '$2y$10$8lG5WtFQmQIUK3JJizmiP.Sv5JjB8InP8P01RDjStXUO6Kz.8ERL.', 'Pak Dosen 2', 'lakilaki', 'dosen', 'user.png'),
+(7, '102', '$2y$10$sRz2R/HA8wbeMcahDHv/eefqb0pfLeIjkszEbW.WCrPNeMhhXrsZS', 'pak dosen 3', 'lakilaki', 'dosen', ''),
+(8, 'admin', '$2y$10$LdA7GXFgzL7BKtp9d3ltIeWmldU3nIUDLBdyMrd2ZpfLc7itmHRQW', 'Administrator', 'lakilaki', 'admin', 'user.png'),
+(9, '24', '$2y$10$iFW4GAhnZHvbd2hhUtab5.OLPrXwEOPw8g9gtazL.OuUEbaps8w9W', 'Qanzul Arrays', 'lakilaki', 'mahasiswa', 'user.png');
 
 --
 -- Indexes for dumped tables
@@ -212,7 +185,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `berkas_bimbingan`
 --
 ALTER TABLE `berkas_bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `bidangminat`
@@ -224,25 +197,25 @@ ALTER TABLE `bidangminat`
 -- AUTO_INCREMENT untuk tabel `bukti_bimbingan`
 --
 ALTER TABLE `bukti_bimbingan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengajuan_judul`
 --
 ALTER TABLE `pengajuan_judul`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengajuan_sidang`
 --
 ALTER TABLE `pengajuan_sidang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
