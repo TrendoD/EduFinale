@@ -157,6 +157,13 @@
                                 </li>
                             </ul>
                         </li>';
+                    } elseif ($data->tipe == "admin") {
+                        echo '
+                        <li>
+                            <a href="/admin/users">
+                                <i class="fa fa-users"></i> Manajemen User
+                            </a>
+                        </li>';
                     }
                     ?>
                 </ul>
