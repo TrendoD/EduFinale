@@ -3,36 +3,63 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class User_m extends CI_Model {
 
-	public function insert($data) {
-		$insert_data = array(
-			'nim' => $data['nim'],
-			'password' => $data['password'],
-			'nama' => $data['nama'],
-			'gender' => $data['gender'],
-			'status' => 'mahasiswa'
-		);
-		
-		return $this->db->insert('user', $insert_data);
-	}
+    protected $table = 'user';
 
-	public function get($data) {
-		$result = $this->db->where('nim', $data['nim'])
-						  ->get('user')
-						  ->row();
-						  
-		return isset($result) ? $result : (object)array('error'=>'1');
-	}
+    public function __construct() {
+        parent::__construct();
+        $this->load->database();
+    }
 
-	public function data($nim) {
-		$result = $this->db->where('nim', $nim)
-						  ->get('user')
-						  ->row();
-						  
-		return isset($result) ? $result : (object)array('error'=>'1');
-	}
+    public function get_user_by_nim($nim) {
+        return $this->db->where('nim', $nim)
+                       ->get($this->table)
+                       ->row();
+    }
 
+    public function validate_login($nim, $password) {
+        $user = $this->get_user_by_nim($nim);
+        
+        if ($user && password_verify($password, $user->password)) {
+            return $user;
+        }
+        
+        return false;
+    }
 
+    public function update_user($nim, $data) {
+        if (isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
+        
+        return $this->db->where('nim', $nim)
+                       ->update($this->table, $data);
+    }
+
+    public function create_user($data) {
+        if (isset($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
+        
+        return $this->db->insert($this->table, $data);
+    }
+
+    public function delete_user($nim) {
+        return $this->db->where('nim', $nim)
+                       ->delete($this->table);
+    }
+
+    public function check_nim_exists($nim) {
+        return $this->db->where('nim', $nim)
+                       ->count_all_results($this->table) > 0;
+    }
+
+    public function get_user_status($nim) {
+        $user = $this->get_user_by_nim($nim);
+        return $user ? $user->status : null;
+    }
+
+    public function get_user_type($nim) {
+        $user = $this->get_user_by_nim($nim);
+        return $user ? $user->tipe : null;
+    }
 }
-
-/* End of file User_m.php */
-/* Location: ./application/models/User_m.php */

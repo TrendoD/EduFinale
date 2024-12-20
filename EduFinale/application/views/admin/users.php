@@ -1,11 +1,11 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
 <div id="page-wrapper">
     <div class="page-content">
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-title">
-                    <h1>Manajemen User
-                        <small></small>
-                    </h1>
+                    <h1>Manajemen User</h1>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-dashboard"></i> Dashboard</li>
                         <li class="active">Manajemen User</li>
@@ -14,72 +14,21 @@
             </div>
         </div>
 
-        <!-- Success Messages -->
-        <?php if($this->input->get('success')) { ?>
-            <div class="alert alert-success">
-                <?php
-                switch($this->input->get('success')) {
-                    case 'add':
-                        echo "User berhasil ditambahkan!";
-                        break;
-                    case 'edit':
-                        echo "User berhasil diubah!";
-                        break;
-                    case 'delete':
-                        echo "User berhasil dihapus!";
-                        break;
-                }
-                ?>
-            </div>
-        <?php } ?>
-
-        <!-- Error Messages -->
-        <?php if($this->input->get('error')) { ?>
-            <div class="alert alert-danger">
-                <?php
-                switch($this->input->get('error')) {
-                    case 'incomplete':
-                        echo "Semua field harus diisi!";
-                        break;
-                    case 'nim_exists':
-                        echo "NIM/Username sudah digunakan!";
-                        break;
-                    case 'add':
-                        echo "Gagal menambahkan user!";
-                        break;
-                    case 'edit':
-                        echo "Gagal mengubah user!";
-                        break;
-                    case 'delete':
-                        echo "Gagal menghapus user!";
-                        break;
-                    case 'self_delete':
-                        echo "Tidak dapat menghapus akun sendiri!";
-                        break;
-                    case 'invalid':
-                        echo "Request tidak valid!";
-                        break;
-                }
-                ?>
-            </div>
-        <?php } ?>
-
         <div class="row">
             <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-md-6">
-                                Data User
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addUserModal">
-                                    <i class="fa fa-plus"></i> Tambah User
-                                </button>
-                            </div>
+                <div class="portlet portlet-default">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h4>Data User</h4>
                         </div>
+                        <div class="portlet-widgets">
+                            <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#addUserModal">
+                                <i class="fa fa-plus"></i> Tambah User
+                            </button>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
-                    <div class="panel-body">
+                    <div class="portlet-body">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover" id="userTable">
                                 <thead>
@@ -106,10 +55,10 @@
                                             <button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#editUserModal<?= $user->id ?>">
                                                 <i class="fa fa-edit"></i> Edit
                                             </button>
-                                            <?php if($user->id != $data->id) { ?>
-                                            <a href="<?= base_url('admin/delete_user/'.$user->id) ?>" class="btn btn-danger btn-xs" onclick="return confirm('Apakah Anda yakin ingin menghapus user ini?')">
+                                            <?php if($user->nim != $data->nim) { ?>
+                                            <button class="btn btn-danger btn-xs" onclick="deleteUser(<?= $user->id ?>, '<?= $user->nama ?>')">
                                                 <i class="fa fa-trash"></i> Hapus
-                                            </a>
+                                            </button>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -122,7 +71,7 @@
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                     <h4 class="modal-title">Edit User</h4>
                                                 </div>
-                                                <form action="<?= base_url('admin/edit_user') ?>" method="post">
+                                                <form id="editUserForm<?= $user->id ?>" onsubmit="return updateUser(<?= $user->id ?>)">
                                                     <div class="modal-body">
                                                         <input type="hidden" name="user_id" value="<?= $user->id ?>">
                                                         
@@ -187,7 +136,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Tambah User Baru</h4>
             </div>
-            <form action="<?= base_url('admin/add_user') ?>" method="post">
+            <form id="addUserForm" onsubmit="return addUser()">
                 <div class="modal-body">
                     <div class="form-group">
                         <label>NIM/Username</label>
@@ -207,6 +156,7 @@
                     <div class="form-group">
                         <label>Tipe User</label>
                         <select class="form-control" name="tipe" required>
+                            <option value="">Pilih Tipe User</option>
                             <option value="mahasiswa">Mahasiswa</option>
                             <option value="dosen">Dosen</option>
                             <option value="rmk">RMK</option>
@@ -218,6 +168,7 @@
                     <div class="form-group">
                         <label>Jenis Kelamin</label>
                         <select class="form-control" name="gender" required>
+                            <option value="">Pilih Jenis Kelamin</option>
                             <option value="lakilaki">Laki-laki</option>
                             <option value="perempuan">Perempuan</option>
                         </select>
@@ -232,10 +183,29 @@
     </div>
 </div>
 
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Konfirmasi Hapus</h4>
+            </div>
+            <div class="modal-body">
+                <p id="deleteConfirmText"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
+                <button type="button" class="btn btn-danger" id="confirmDelete">Ya, Hapus!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 $(document).ready(function() {
-    // Inisialisasi DataTable
     $('#userTable').DataTable({
+        "pageLength": 10,
         "language": {
             "lengthMenu": "Tampilkan _MENU_ data per halaman",
             "zeroRecords": "Data tidak ditemukan",
@@ -249,13 +219,78 @@ $(document).ready(function() {
                 "next": "Selanjutnya",
                 "previous": "Sebelumnya"
             }
-        },
-        "pageLength": 10
+        }
     });
-
-    // Hapus alert setelah 3 detik
-    setTimeout(function() {
-        $('.alert').fadeOut('slow');
-    }, 3000);
 });
+
+function addUser() {
+    $.ajax({
+        url: '<?= base_url('admin/add_user') ?>',
+        type: 'POST',
+        data: $('#addUserForm').serialize(),
+        dataType: 'json',
+        success: function(response) {
+            if(response.status == 'success') {
+                $('#addUserModal').modal('hide');
+                alert(response.message);
+                location.reload();
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function() {
+            alert('Terjadi kesalahan sistem');
+        }
+    });
+    return false;
+}
+
+function updateUser(id) {
+    $.ajax({
+        url: '<?= base_url('admin/edit_user') ?>',
+        type: 'POST',
+        data: $('#editUserForm' + id).serialize(),
+        dataType: 'json',
+        success: function(response) {
+            if(response.status == 'success') {
+                $('#editUserModal' + id).modal('hide');
+                alert(response.message);
+                location.reload();
+            } else {
+                alert(response.message);
+            }
+        },
+        error: function() {
+            alert('Terjadi kesalahan sistem');
+        }
+    });
+    return false;
+}
+
+function deleteUser(id, nama) {
+    var userId = id;
+    $('#deleteConfirmText').text('Apakah anda yakin ingin menghapus user "' + nama + '"?');
+    $('#deleteModal').modal('show');
+    
+    $('#confirmDelete').off('click').on('click', function() {
+        $.ajax({
+            url: '<?= base_url('admin/delete_user/') ?>' + userId,
+            type: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                $('#deleteModal').modal('hide');
+                if(response.status === 'success') {
+                    alert(response.message);
+                    location.reload();
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function() {
+                $('#deleteModal').modal('hide');
+                alert('Terjadi kesalahan sistem');
+            }
+        });
+    });
+}
 </script>
