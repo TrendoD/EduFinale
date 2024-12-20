@@ -12,8 +12,8 @@
     <link href="<?php echo base_url();?>css/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,300italic,400italic,500italic,700italic' rel="stylesheet" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel="stylesheet" type="text/css">
-    <link href="<?php echo base_url();?>icon/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Update Font Awesome ke versi 4.7.0 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/messenger/messenger.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/messenger/messenger-theme-flat.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
@@ -52,12 +52,16 @@
                 <ul class="nav navbar-right">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user"></i> <i class="fa fa-caret-down"></i>
+                            <i class="fa fa-user-circle"></i> <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu" style="margin: 0;min-width: 200px">
                             <li>
+                                <?php if($data->tipe == "admin"): ?>
+                                <a href="<?=base_url();?>admin/profile">
+                                <?php else: ?>
                                 <a href="<?=base_url();?>home/profil">
-                                    <i class="fa fa-user"></i> Profil
+                                <?php endif; ?>
+                                    <i class="fa fa-user-circle"></i> Profil
                                 </a>
                             </li>
                             <li class="divider"></li>
@@ -95,16 +99,34 @@
                             </button>
                         </form>
                     </li>
+                    <?php if($data->tipe == "admin"): ?>
+                    <li>
+                        <a href="<?=base_url();?>admin">
+                            <i class="fa fa-tachometer"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url();?>admin/profile">
+                            <i class="fa fa-user-circle"></i> Profil
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?=base_url();?>admin/users">
+                            <i class="fa fa-users"></i> Manajemen User
+                        </a>
+                    </li>
+                    <?php else: ?>
                     <li>
                         <a href="<?=base_url();?>home">
-                            <i class="fa fa-dashboard"></i> Dashboard
+                            <i class="fa fa-tachometer"></i> Dashboard
                         </a>
                     </li>
                     <li>
                         <a href="/home/profil">
-                            <i class="fa fa-user"></i> Profil
+                            <i class="fa fa-user-circle"></i> Profil
                         </a>
                     </li>
+                    <?php endif; ?>
                     <?php 
                     if ($data->tipe == "dosen") {
                         echo '
@@ -124,7 +146,7 @@
                         echo '
                         <li class="panel">
                             <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="collapse nav" id="forms">
                                 <li>
@@ -143,7 +165,7 @@
                         echo '
                         <li class="panel">
                             <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
                             </a>
                             <ul class="collapse nav" id="forms">
                                 <li>
@@ -157,13 +179,6 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>';
-                    } elseif ($data->tipe == "admin") {
-                        echo '
-                        <li>
-                            <a href="/admin/users">
-                                <i class="fa fa-users"></i> Manajemen User
-                            </a>
                         </li>';
                     }
                     ?>

@@ -3,29 +3,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Sesi_m extends CI_Model {
 
-    public function __construct() {
-        parent::__construct();
-        $this->load->library('session');
-    }
+	public function start($data) {
+		$_SESSION['login'] = 1;
+		$_SESSION['nim'] = $data['nim'];
+		$_SESSION['nama'] = $data['nama'];
+		$_SESSION['status'] = $data['status'];
+	}
 
-    public function start($data) {
-        $this->session->set_userdata([
-            'login' => TRUE,
-            'nim' => $data['nim'],
-            'nama' => $data['nama'],
-            'status' => $data['status']
-        ]);
-    }
+	public function check() {
+		return (isset($_SESSION['login'])) ? true : false;
+	}
 
-    public function check() {
-        return $this->session->userdata('login') ? TRUE : FALSE;
-    }
+	public function validate_login() {
+		if (empty($_SESSION['login']) || $_SESSION['login'] == '') {
+			exit(header("Location: ".base_url()."masuk"));
+		}
+	}
 
-    public function validate_login() {
-        if (!$this->session->userdata('login')) {
-            redirect('masuk');
-        }
-    }
 }
 
 /* End of file Sesi_m.php */

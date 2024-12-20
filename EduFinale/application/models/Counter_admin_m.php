@@ -25,11 +25,13 @@ class Counter_admin_m extends CI_Model {
     
     public function proposal_pending() {
         return $this->db->where('status', 'menunggu')
-                       ->count_all_results('pengajuan_judul');
+                      ->or_where('status', 'pending')
+                      ->count_all_results('pengajuan_judul');
     }
 
     public function sidang_pending() {
         return $this->db->where('status', 'menunggu')
-                       ->count_all_results('pengajuan_sidang');
+                      ->or_where('status', 'pending')
+                      ->count_all_results('pengajuan_sidang');
     }
 }

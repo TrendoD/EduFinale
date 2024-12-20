@@ -176,62 +176,92 @@ class Admin extends CI_Controller {
     }
 
     public function profile() {
+        $success = $this->session->flashdata('success');
+        $error = $this->session->flashdata('error');
+        
         $data = array(
-            'data' => $this->user
+            'data' => $this->user,
+            'success' => $success,
+            'error' => $error
         );
         
         $this->load->view('part/header', $data);
-        $this->load->view('admin/profile', $data);
+        $this->load->view('profil_page', $data);
         $this->load->view('part/footer');
     }
 
-    public function update_profile() {
-        header('Content-Type: application/json');
+    public function updateData() {
+        $nim = $this->input->post('nim');
+        $nama = $this->input->post('nama');
+        $gender = $this->input->post('gender');
+        $password = $this->input->post('password');
         
-        if(!$this->input->post('nama') || !$this->input->post('gender')) {
-            echo json_encode(['status' => 'error', 'message' => 'Nama dan Jenis Kelamin harus diisi!']);
+        if(!$nim || !$nama || !$gender) {
+            $this->session->set_flashdata('error', 'incomplete');
+            redirect('admin/profile');
             return;
         }
 
-        $data = array(
-            'nama' => $this->input->post('nama'),
-            'gender' => $this->input->post('gender')
-        );
-        
-        if($this->input->post('password')) {
-            $data['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-        }
-        
-        if(!empty($_FILES['photo']['name'])) {
-            $config['upload_path'] = './img/profile/';
-            $config['allowed_types'] = 'gif|jpg|jpeg|png';
-            $config['max_size'] = 2048;
-            $config['file_name'] = uniqid();
-            
-            $this->load->library('upload');
-            $this->upload->initialize($config);
-            
-            if($this->upload->do_upload('photo')) {
-                $uploaded_data = $this->upload->data();
-                $data['photo'] = $uploaded_data['file_name'];
-                
-                if($this->user->photo != 'user.png') {
-                    $old_photo = FCPATH . 'img/profile/' . $this->user->photo;
-                    if(file_exists($old_photo)) {
-                        unlink($old_photo);
-                    }
-                }
-            } else {
-                echo json_encode(['status' => 'error', 'message' => strip_tags($this->upload->display_errors())]);
+        if($nim != $this->user->nim) {
+            $existing_user = $this->db->get_where('user', ['nim' => $nim])->row();
+            if($existing_user) {
+                $this->session->set_flashdata('error', 'nim_exists');
+                redirect('admin/profile');
                 return;
             }
         }
+
+        $data = array(
+            'nim' => $nim,
+            'nama' => $nama,
+            'gender' => $gender
+        );
         
+        if($password) {
+            $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+        }
+
         $this->db->where('nim', $this->user->nim);
         if($this->db->update('user', $data)) {
-            echo json_encode(['status' => 'success', 'message' => 'Profil berhasil diupdate!']);
+            $this->session->set_flashdata('success', 'data');
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Gagal mengupdate profil!']);
+            $this->session->set_flashdata('error', 'update_failed');
         }
+
+        redirect('admin/profile');
+    }
+
+    public function uploadPhoto() {
+        $config['upload_path'] = './img/profile/';
+        $config['allowed_types'] = 'gif|jpg|jpeg|png';
+        $config['max_size'] = 2048;
+        $config['file_name'] = uniqid();
+        
+        $this->load->library('upload');
+        $this->upload->initialize($config);
+        
+        if($this->upload->do_upload('photo')) {
+            $uploaded_data = $this->upload->data();
+            
+            $data['photo'] = $uploaded_data['file_name'];
+            
+            if($this->user->photo != 'user.png') {
+                $old_photo = FCPATH . 'img/profile/' . $this->user->photo;
+                if(file_exists($old_photo)) {
+                    unlink($old_photo);
+                }
+            }
+            
+            $this->db->where('nim', $this->user->nim);
+            if($this->db->update('user', $data)) {
+                $this->session->set_flashdata('success', 'photo');
+            } else {
+                $this->session->set_flashdata('error', 'photo');
+            }
+        } else {
+            $this->session->set_flashdata('error', 'photo');
+        }
+        
+        redirect('admin/profile');
     }
 }

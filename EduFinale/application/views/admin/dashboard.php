@@ -3,198 +3,212 @@
 <!-- begin MAIN PAGE CONTENT -->
 <div id="page-wrapper">
     <div class="page-content">
-        <!-- Added padding wrapper -->
-        <div class="dashboard-wrapper">
-            <!-- begin DASHBOARD CIRCLE TILES -->
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading dark-blue">
-                                <i class="fa fa-users fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content dark-blue">
-                            <div class="circle-tile-description text-faded">
-                                Total Users
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                10
-                                <span id="sparklineA"></span>
-                            </div>
-                        </div>
-                    </div>
+        <!-- begin PAGE TITLE AREA -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-title">
+                    <h1>Dashboard
+                        <small></small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active" style="font-weight: bold;"><i class="fa fa-dashboard"></i> Dashboard</li>
+                    </ol>
                 </div>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+        <!-- end PAGE TITLE AREA -->
 
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading green">
-                                <i class="fa fa-graduation-cap fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content green">
-                            <div class="circle-tile-description text-faded">
-                                Total Mahasiswa
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $total_mahasiswa ?>
-                            </div>
+        <!-- begin DASHBOARD CIRCLE TILES -->
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-blue">
+                            <i class="fa fa-users fa-fw fa-3x"></i>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading orange">
-                                <i class="fa fa-user fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content orange">
-                            <div class="circle-tile-description text-faded">
-                                Total Dosen
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $total_dosen ?>
-                            </div>
+                    </a>
+                    <div class="circle-tile-content dark-blue">
+                        <div class="circle-tile-description text-faded">
+                            Total Users
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading purple">
-                                <i class="fa fa-file-text fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content purple">
-                            <div class="circle-tile-description text-faded">
-                                Total Proposal
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $total_proposal ?>
-                            </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $total_users ?>
+                            <span id="sparklineA"></span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading red">
-                                <i class="fa fa-tasks fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content red">
-                            <div class="circle-tile-description text-faded">
-                                Total Sidang
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $total_sidang ?>
-                            </div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading green">
+                            <i class="fa fa-graduation-cap fa-fw fa-3x"></i>
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading blue">
-                                <i class="fa fa-hourglass-half fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content blue">
-                            <div class="circle-tile-description text-faded">
-                                Proposal Pending
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $proposal_pending ?>
-                            </div>
+                    </a>
+                    <div class="circle-tile-content green">
+                        <div class="circle-tile-description text-faded">
+                            Total Mahasiswa
                         </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-sm-6">
-                    <div class="circle-tile">
-                        <a href="#">
-                            <div class="circle-tile-heading dark-gray">
-                                <i class="fa fa-hourglass-half fa-fw fa-3x"></i>
-                            </div>
-                        </a>
-                        <div class="circle-tile-content dark-gray">
-                            <div class="circle-tile-description text-faded">
-                                Sidang Pending
-                            </div>
-                            <div class="circle-tile-number text-faded">
-                                <?= $sidang_pending ?>
-                            </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $total_mahasiswa ?>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Info Sections -->
-            <div class="row">
-                <!-- System Info -->
-                <div class="col-lg-6">
-                    <div class="portlet portlet-blue">
-                        <div class="portlet-heading">
-                            <div class="portlet-title">
-                                <h4><i class="fa fa-server fa-fw"></i> System Information</h4>
-                            </div>
-                            <div class="clearfix"></div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading orange">
+                            <i class="fa fa-user fa-fw fa-3x"></i>
                         </div>
-                        <div class="portlet-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <td><i class="fa fa-code"></i> PHP Version</td>
-                                        <td><i class="fa fa-info-circle"></i> <?= phpversion() ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-gear"></i> Server</td>
-                                        <td><i class="fa fa-server"></i> <?= $_SERVER['SERVER_SOFTWARE'] ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-database"></i> Database</td>
-                                        <td><i class="fa fa-database"></i> MySQL</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-cogs"></i> Framework</td>
-                                        <td><i class="fa fa-code-branch"></i> CodeIgniter <?= CI_VERSION ?></td>
-                                    </tr>
-                                </table>
-                            </div>
+                    </a>
+                    <div class="circle-tile-content orange">
+                        <div class="circle-tile-description text-faded">
+                            Total Dosen
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $total_dosen ?>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Time Info -->
-                <div class="col-lg-6">
-                    <div class="portlet portlet-blue">
-                        <div class="portlet-heading">
-                            <div class="portlet-title">
-                                <h4><i class="fa fa-clock fa-fw"></i> Time Information</h4>
-                            </div>
-                            <div class="clearfix"></div>
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading purple">
+                            <i class="fa fa-file-text fa-fw fa-3x"></i>
                         </div>
-                        <div class="portlet-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <tr>
-                                        <td><i class="fa fa-globe"></i> Time Zone</td>
-                                        <td><i class="fa fa-location-dot"></i> Asia/Jakarta (WIB)</td>
-                                    </tr>
-                                    <tr>
-                                        <td><i class="fa fa-calendar"></i> Current Time</td>
-                                        <td><i class="fa fa-clock"></i> <span id="current-time"></span></td>
-                                    </tr>
-                                </table>
-                            </div>
+                    </a>
+                    <div class="circle-tile-content purple">
+                        <div class="circle-tile-description text-faded">
+                            Total Proposal
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $total_proposal ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading red">
+                            <i class="fa fa-tasks fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content red">
+                        <div class="circle-tile-description text-faded">
+                            Total Sidang
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $total_sidang ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading blue">
+                            <i class="fa fa-hourglass-half fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content blue">
+                        <div class="circle-tile-description text-faded">
+                            Proposal Pending
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $proposal_pending ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-sm-6">
+                <div class="circle-tile">
+                    <a href="#">
+                        <div class="circle-tile-heading dark-gray">
+                            <i class="fa fa-hourglass-half fa-fw fa-3x"></i>
+                        </div>
+                    </a>
+                    <div class="circle-tile-content dark-gray">
+                        <div class="circle-tile-description text-faded">
+                            Sidang Pending
+                        </div>
+                        <div class="circle-tile-number text-faded">
+                            <?= $sidang_pending ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Sections -->
+        <div class="row">
+            <!-- System Info -->
+            <div class="col-lg-6">
+                <div class="portlet portlet-blue">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h4><i class="fa fa-server fa-fw"></i> System Information</h4>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td><i class="fa fa-code"></i> PHP Version</td>
+                                    <td><i class="fa fa-info-circle"></i> <?= phpversion() ?></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-gear"></i> Server</td>
+                                    <td><i class="fa fa-server"></i> <?= $_SERVER['SERVER_SOFTWARE'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-database"></i> Database</td>
+                                    <td><i class="fa fa-database"></i> MySQL</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-cogs"></i> Framework</td>
+                                    <td><i class="fa fa-code-branch"></i> CodeIgniter <?= CI_VERSION ?></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Info -->
+            <div class="col-lg-6">
+                <div class="portlet portlet-blue">
+                    <div class="portlet-heading">
+                        <div class="portlet-title">
+                            <h4><i class="fa fa-clock fa-fw"></i> Time Information</h4>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="portlet-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <tr>
+                                    <td><i class="fa fa-globe"></i> Time Zone</td>
+                                    <td><i class="fa fa-location-dot"></i> Asia/Jakarta (WIB)</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-calendar"></i> Current Time</td>
+                                    <td><i class="fa fa-clock"></i> <span id="current-time"></span></td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -204,11 +218,6 @@
 </div>
 
 <style>
-/* Added: Top padding wrapper */
-.dashboard-wrapper {
-    padding-top: 30px;
-}
-
 /* Dashboard Circle Tiles */
 .circle-tile {
     margin-bottom: 15px;
