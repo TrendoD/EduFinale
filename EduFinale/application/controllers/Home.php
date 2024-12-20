@@ -105,41 +105,21 @@ class Home extends CI_Controller {
 		if ($param != NULL) {
 			switch ($param) {
 				case 'updateData':
-					if (!$this->input->post('nim') || !$this->input->post('nama')) {
-						redirect(base_url().'home/profil/?error=incomplete','refresh');
-						return;
-					}
-					
-					$newdata = array(
-						'nama' => $this->input->post('nama'),
-						'gender' => $this->input->post('gender'),
-						'nim' => $this->input->post('nim')
-					);
-
-					// Only update password if provided
-					if ($this->input->post('password')) {
-						$newdata['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-					}
-					
-					// Validate if new NIM already exists for different user
-					if ($newdata['nim'] !== $_SESSION['nim']) {
-						$existing = $this->db->get_where('user', array('nim' => $newdata['nim']))->row();
-						if ($existing) {
-							redirect(base_url().'home/profil/?error=nim_exists','refresh');
-							return;
-						}
-					}
-					
-					$this->db->where('nim', $_SESSION['nim']);
-					if ($this->db->update('user', $newdata)) {
-						// Update session with new NIM if changed
-						if ($newdata['nim'] !== $_SESSION['nim']) {
-							$_SESSION['nim'] = $newdata['nim'];
-						}
-						redirect(base_url().'home/profil/?success=data','refresh');
-					} else {
-						redirect(base_url().'home/profil/?error=update_failed','refresh');
-					}
+                    // Only update password if provided
+                    if ($this->input->post('password')) {
+                        $newdata = array(
+                            'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+                        );
+                        
+                        $this->db->where('nim', $this->user->nim);
+                        if ($this->db->update('user', $newdata)) {
+                            redirect(base_url().'home/profil/?success=data','refresh');
+                        } else {
+                            redirect(base_url().'home/profil/?error=update_failed','refresh');
+                        }
+                    } else {
+                        redirect(base_url().'home/profil','refresh');
+                    }
 					break;
 
 				case 'uploadPhoto':
@@ -174,7 +154,6 @@ class Home extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(base_url().'masuk','refresh');
 	}
-
 }
 
 /* End of file Home.php */
