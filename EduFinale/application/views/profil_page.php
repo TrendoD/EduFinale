@@ -85,7 +85,8 @@
                                                     <label for="textInputDisabled" class="col-sm-2 control-label">Password</label>
                                                     <div class="col-sm-10">
                                                         <input type="password" class="form-control" id="password" name="password" 
-                                                               value="<?php echo isset($data->password) ? htmlspecialchars($data->password) : ''; ?>" required>
+                                                               placeholder="Kosongkan jika tidak ingin mengubah password">
+                                                        <small class="text-muted">Hanya isi jika ingin mengubah password</small>
                                                     </div>
                                                 </div>
                                                 <br>

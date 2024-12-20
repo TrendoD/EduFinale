@@ -110,11 +110,16 @@ class Home extends CI_Controller {
 						return;
 					}
 					
-					$newdata = array();
-					$newdata['nama'] = $this->input->post('nama');
-					$newdata['gender'] = $this->input->post('gender');
-					$newdata['nim'] = $this->input->post('nim');
-					$newdata['password'] = $this->input->post('password');
+					$newdata = array(
+						'nama' => $this->input->post('nama'),
+						'gender' => $this->input->post('gender'),
+						'nim' => $this->input->post('nim')
+					);
+
+					// Only update password if provided
+					if ($this->input->post('password')) {
+						$newdata['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+					}
 					
 					// Validate if new NIM already exists for different user
 					if ($newdata['nim'] !== $_SESSION['nim']) {
