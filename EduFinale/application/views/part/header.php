@@ -135,6 +135,12 @@
                                 <i class="fa fa-book"></i> Daftar Bimbingan Mhs
                             </a>
                         </li>';
+                        echo '
+                        <li>
+                            <a href="'.base_url('chat').'">
+                                <i class="fa fa-comments"></i> Chat Mahasiswa
+                            </a>
+                        </li>';
                     } elseif ($data->tipe == "rmk") {
                         echo '
                         <li>
@@ -179,6 +185,13 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>';
+                        // Menu chat untuk mahasiswa (tanpa kondisi pembimbing)
+                        echo '
+                        <li>
+                            <a href="'.base_url('chat').'">
+                                <i class="fa fa-comments"></i> Chat Dosen Pembimbing
+                            </a>
                         </li>';
                     }
                     ?>
