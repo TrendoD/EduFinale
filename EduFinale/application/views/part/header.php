@@ -23,6 +23,7 @@
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/demo.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>css/profile-card.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/sweetalert2.css" rel="stylesheet">
     <script src="<?php echo base_url();?>js/plugins/messenger/messenger.min.js"></script>
     <script src="<?php echo base_url();?>js/plugins/messenger/messenger-theme-flat.js"></script>
@@ -30,171 +31,155 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
 </head>
 <body>
-    <div id="wrapper">
-        <nav class="navbar-top" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <i class="fa fa-bars"></i> Menu
-                </button>
-                <div class="navbar-brand" style="float:center">
-                    <span style="color:#fff">EduFinale</span>
-                    <a href="/home"></a>
-                </div>
+<div id="wrapper">
+    <nav class="navbar-top" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle pull-right" data-toggle="collapse" data-target=".sidebar-collapse">
+                <i class="fa fa-bars"></i> Menu
+            </button>
+            <div class="navbar-brand">
+                <span style="color:#fff">EduFinale</span>
+                <a href="/home"></a>
             </div>
-            <div class="nav-top">
-                <ul class="nav navbar-left">
-                    <li class="tooltip-sidebar-toggle">
-                        <a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="Tampilkan/Sembunyikan Menu">
-                            <i class="fa fa-bars"></i>
+        </div>
+        <div class="nav-top">
+            <ul class="nav navbar-left">
+                <li class="tooltip-sidebar-toggle">
+                    <a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="Tampilkan/Sembunyikan Menu">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
+                <li class="nav-search">
+                    <form role="form">
+                        <input type="search" class="form-control" placeholder="Cari sesuatu...">
+                        <button type="submit" class="btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-right">
+                <li class="dropdown pull-right">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-user-circle"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu" style="margin: 0;min-width: 200px">
+                        <li>
+                            <?php if($data->tipe == "admin"): ?>
+                            <a href="<?=base_url();?>admin/profile">
+                            <?php else: ?>
+                            <a href="<?=base_url();?>home/profil">
+                            <?php endif; ?>
+                                <i class="fa fa-user-circle"></i> Profil
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/home/logout">
+                                <i class="fa fa-sign-out"></i> Keluar
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar-side" role="navigation">
+        <div class="navbar-collapse sidebar-collapse collapse">
+            <ul id="side" class="nav navbar-nav side-nav">
+                <li class="side-user hidden-xs">
+                    <div class="profile-card">
+                        <img class="profile-image" src="/img/profile/<?=$data->photo;?>" alt="Profile Photo">
+                        <div class="profile-info">
+                            <p class="profile-name"><?=$data->nama;?></p>
+                            <p class="profile-role"><?=ucfirst($data->tipe);?></p>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </li>
+                <?php if($data->tipe == "admin"): ?>
+                <li>
+                    <a href="<?=base_url();?>admin">
+                        <i class="fa fa-tachometer"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="<?=base_url();?>admin/profile">
+                        <i class="fa fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <li>
+                    <a href="<?=base_url();?>admin/users">
+                        <i class="fa fa-users"></i> Manajemen User
+                    </a>
+                </li>
+                <?php else: ?>
+                <li>
+                    <a href="<?=base_url();?>home">
+                        <i class="fa fa-tachometer"></i> Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="/home/profil">
+                        <i class="fa fa-user-circle"></i> Profil
+                    </a>
+                </li>
+                <?php endif; ?>
+                <?php 
+                if ($data->tipe == "dosen") {
+                    echo '
+                    <li>
+                        <a href="/pengajuan/dosen">
+                            <i class="fa fa-book"></i> Daftar Bimbingan Mhs
                         </a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-right">
-                    <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-user-circle"></i> <i class="fa fa-caret-down"></i>
+                    </li>';
+                } elseif ($data->tipe == "rmk") {
+                    echo '
+                    <li>
+                        <a href="/pengajuan/rmk">
+                            <i class="fa fa-book"></i> Daftar Pengajuan
                         </a>
-                        <ul class="dropdown-menu" style="margin: 0;min-width: 200px">
+                    </li>';
+                } elseif ($data->tipe == "kaprodi") {
+                    echo '
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
+                            <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
+                        </a>
+                        <ul class="collapse nav" id="forms">
                             <li>
-                                <?php if($data->tipe == "admin"): ?>
-                                <a href="<?=base_url();?>admin/profile">
-                                <?php else: ?>
-                                <a href="<?=base_url();?>home/profil">
-                                <?php endif; ?>
-                                    <i class="fa fa-user-circle"></i> Profil
+                                <a href="/pengajuan/kaprodi">
+                                    <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
                                 </a>
                             </li>
-                            <li class="divider"></li>
                             <li>
-                                <a href="/home/logout">
-                                    <i class="fa fa-sign-out"></i> Keluar
+                                <a href="/sidang/daftar">
+                                    <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
                                 </a>
                             </li>
                         </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <nav class="navbar-side" role="navigation">
-            <div class="navbar-collapse sidebar-collapse collapse">
-                <ul id="side" class="nav navbar-nav side-nav">
-                    <li class="side-user hidden-xs">
-                        <img class="img-circle" style="max-height: 150px;max-width: 150px;" src="/img/profile/<?=$data->photo;?>" alt="">
-                        <p class="welcome">
-                            <i class="fa fa-key"></i> Masuk sebagai
-                        </p>
-                        <p class="name tooltip-sidebar-logout">
-                            <span class="last-name"><?=$data->nama;?></span> 
-                            <a style="color: inherit" class="logout_open" href="#logout" data-toggle="tooltip" data-placement="top" title="Keluar">
-                                <i class="fa fa-sign-out"></i>
-                            </a>
-                        </p>
-                        <div class="clearfix"></div>
-                    </li>
-                    <li class="nav-search">
-                        <form role="form">
-                            <input type="search" class="form-control" placeholder="Pencarian...">
-                            <button class="btn">
-                                <i class="fa fa-search"></i>
-                            </button>
-                        </form>
-                    </li>
-                    <?php if($data->tipe == "admin"): ?>
-                    <li>
-                        <a href="<?=base_url();?>admin">
-                            <i class="fa fa-tachometer"></i> Dashboard
+                    </li>';
+                } elseif ($data->tipe == "mahasiswa") {
+                    echo '
+                    <li class="panel">
+                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
+                            <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
                         </a>
-                    </li>
-                    <li>
-                        <a href="<?=base_url();?>admin/profile">
-                            <i class="fa fa-user-circle"></i> Profil
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?=base_url();?>admin/users">
-                            <i class="fa fa-users"></i> Manajemen User
-                        </a>
-                    </li>
-                    <?php else: ?>
-                    <li>
-                        <a href="<?=base_url();?>home">
-                            <i class="fa fa-tachometer"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/home/profil">
-                            <i class="fa fa-user-circle"></i> Profil
-                        </a>
-                    </li>
-                    <?php endif; ?>
-                    <?php 
-                    if ($data->tipe == "dosen") {
-                        echo '
-                        <li>
-                            <a href="/pengajuan/dosen">
-                                <i class="fa fa-book"></i> Daftar Bimbingan Mhs
-                            </a>
-                        </li>';
-                        echo '
-                        <li>
-                            <a href="'.base_url('chat').'">
-                                <i class="fa fa-comments"></i> Chat Mahasiswa
-                            </a>
-                        </li>';
-                    } elseif ($data->tipe == "rmk") {
-                        echo '
-                        <li>
-                            <a href="/pengajuan/rmk">
-                                <i class="fa fa-book"></i> Daftar Pengajuan
-                            </a>
-                        </li>';
-                    } elseif ($data->tipe == "kaprodi") {
-                        echo '
-                        <li class="panel">
-                            <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="collapse nav" id="forms">
-                                <li>
-                                    <a href="/pengajuan/kaprodi">
-                                        <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/sidang/daftar">
-                                        <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>';
-                    } elseif ($data->tipe == "mahasiswa") {
-                        echo '
-                        <li class="panel">
-                            <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
-                            </a>
-                            <ul class="collapse nav" id="forms">
-                                <li>
-                                    <a href="/pengajuan/judul">
-                                        <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/pengajuan/sidang">
-                                        <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>';
-                        // Menu chat untuk mahasiswa (tanpa kondisi pembimbing)
-                        echo '
-                        <li>
-                            <a href="'.base_url('chat').'">
-                                <i class="fa fa-comments"></i> Chat Dosen Pembimbing
-                            </a>
-                        </li>';
-                    }
-                    ?>
-                </ul>
-            </div>
-        </nav>
+                        <ul class="collapse nav" id="forms">
+                            <li>
+                                <a href="/pengajuan/judul">
+                                    <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pengajuan/sidang">
+                                    <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
+                                </a>
+                            </li>
+                        </ul>
+                    </li>';
+                }
+                ?>
+            </ul>
+        </div>
+    </nav>

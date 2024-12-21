@@ -6,18 +6,11 @@ function status($status) {
     if ($status == 'deleted') return '<a class="btn btn-xs btn-default"><i class="fa fa-trash-o"></i> Formulir Dihapus</a>';
     if ($status == 'edited') return '<a class="btn btn-xs btn-blue "><i class="fa fa-pencil"></i> Formulir Diedit</a>';
 }
-
 ?>
-        <!-- /.navbar-side -->
-        <!-- end SIDE NAVIGATION -->
-
         <!-- begin MAIN PAGE CONTENT -->
         <div id="page-wrapper">
-
             <div class="page-content">
-
                 <!-- begin PAGE TITLE AREA -->
-                <!-- Use this section for each page's title and breadcrumb layout. In this example a date range picker is included within the breadcrumb. -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="page-title">
@@ -26,15 +19,10 @@ function status($status) {
                             </h1>
                             <ol class="breadcrumb">
                                 <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
-                                <li class="pull-right">
-
-                                </li>
                             </ol>
                         </div>
                     </div>
-                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.row -->
                 <!-- end PAGE TITLE AREA -->
 
                 <!-- begin DASHBOARD CIRCLE TILES -->
@@ -79,7 +67,6 @@ function status($status) {
                                     <?=$counter_formulir;?>
                                     <span id="sparklineA"></span>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -97,7 +84,6 @@ function status($status) {
                                 <div class="circle-tile-number text-faded">
                                     <?=$counter_terima;?>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -115,7 +101,6 @@ function status($status) {
                                 <div class="circle-tile-number text-faded">
                                     <?=$counter_tinjau;?>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -134,60 +119,25 @@ function status($status) {
                                     <?=$counter_tolak;?>
                                     <span id="sparklineC"></span>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
                     <?php 
                     } 
                     ?>
-                    
                 </div>
                 <!-- end DASHBOARD CIRCLE TILES -->
-                <!-- /.row -->
 
-<!--
                 <div class="row">
-                    
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="portlet portlet-green">
-                                    <div class="portlet-heading">
-                                        <div class="portlet-title">
-                                            <h4><i class="fa fa-exchange fa-fw"></i> Histori</h4>
-                                        </div>
-                                        <div class="portlet-widgets">
-                                            <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                    <div id="transactionsPortlet" class="panel-collapse collapse in">
-                                        <div class="portlet-body">
-                                            <div class="table-responsive dashboard-demo-table">
-                                                
-                                            </div>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
--->
-                            <!-- /.col-lg-12 -->
-
                         </div>
                     </div>
                 </div>
-
             </div>
-            <!-- /.page-content -->
-
         </div>
-        <!-- /#page-wrapper -->
         <!-- end MAIN PAGE CONTENT -->
-
     </div>
     <!-- /#wrapper -->
-
-    <!-- GLOBAL SCRIPTS -->
-    

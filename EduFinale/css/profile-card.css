@@ -1,0 +1,54 @@
+.profile-card {
+    display: flex !important;
+    align-items: center !important;
+    padding: 1rem;
+    background: #2196F3; /* Matching the header blue color */
+    border-radius: 8px;
+    margin: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.profile-card:hover {
+    background: #1E88E5; /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.profile-image {
+    width: 45px !important;
+    height: 45px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.8);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    margin-right: 12px !important;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.profile-info {
+    flex-grow: 1;
+    position: relative;
+    display: block !important;
+}
+
+.profile-name {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important; /* Pure white for better contrast */
+    display: block !important;
+    letter-spacing: 0.3px;
+}
+
+.profile-role {
+    margin: 3px 0 0 !important;
+    padding: 0 !important;
+    font-size: 12px !important;
+    color: rgba(255,255,255,0.9) !important; /* Slightly less transparent for better readability */
+    display: block !important;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+}

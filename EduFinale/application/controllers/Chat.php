@@ -57,6 +57,8 @@ class Chat extends CI_Controller {
         }
 
         $data['data'] = $this->user;
+        $data['title'] = ($data['data']->tipe == "dosen") ? "Chat Mahasiswa Bimbingan" : "Chat Dosen Pembimbing";
+        $data['description'] = ($data['data']->tipe == "dosen") ? "Komunikasi dengan Mahasiswa Bimbingan" : "Komunikasi dengan Dosen Pembimbing";
         
         $this->load->view('part/header', $data);
         $this->load->view('chat/index', $data);
