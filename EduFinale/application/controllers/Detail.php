@@ -45,10 +45,11 @@ class Detail extends CI_Controller {
 	}
 
 	public function _kaprodi($id) {
+		$detail = $this->db->get_where('pengajuan_judul', array('id'=>$id, 'status'=>'pendingKaprodi'))->row();
 		$data = array(
 			'data' => $this->user,
-			'detail' => $this->db->get_where('pengajuan_judul', array('id'=>$id, 'status'=>'pendingKaprodi'))->row(),
-			'dosen' => $this->db->get_where('user', array('tipe'=>'dosen'))
+			'detail' => $detail,
+			'dosen' => $this->db->where('tipe', 'dosen')->where('nim !=', $detail->dosbing1)->get('user')
 		);
 		$this->load->view('part/header', $data); 
 		$this->load->view('form/detail_kaprodi',$data);
