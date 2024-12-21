@@ -1,16 +1,22 @@
+.side-user {
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-bottom: 25px !important;
+}
+
 .profile-card {
     display: flex !important;
     align-items: center !important;
     padding: 1rem;
-    background: #2196F3; /* Matching the header blue color */
-    border-radius: 8px;
+    background: #2196F3;
     margin: 1rem;
     transition: all 0.3s ease;
     border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 8px;
 }
 
 .profile-card:hover {
-    background: #1E88E5; /* Slightly darker on hover */
+    background: #1E88E5;
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
@@ -18,19 +24,19 @@
 .profile-image {
     width: 45px !important;
     height: 45px !important;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255,255,255,0.8);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    border: 2px solid rgba(255,255,255,0.8) !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
     margin-right: 12px !important;
-    transition: all 0.3s ease;
-    flex-shrink: 0;
+    transition: all 0.3s ease !important;
+    flex-shrink: 0 !important;
 }
 
 .profile-info {
-    flex-grow: 1;
-    position: relative;
+    flex-grow: 1 !important;
     display: block !important;
+    visibility: visible !important;
 }
 
 .profile-name {
@@ -38,17 +44,70 @@
     padding: 0 !important;
     font-size: 14px !important;
     font-weight: 600 !important;
-    color: #ffffff !important; /* Pure white for better contrast */
+    color: #ffffff !important;
     display: block !important;
-    letter-spacing: 0.3px;
+    visibility: visible !important;
+    letter-spacing: 0.3px !important;
 }
 
 .profile-role {
     margin: 3px 0 0 !important;
     padding: 0 !important;
     font-size: 12px !important;
-    color: rgba(255,255,255,0.9) !important; /* Slightly less transparent for better readability */
+    color: rgba(255,255,255,0.9) !important;
     display: block !important;
-    font-weight: 400;
-    letter-spacing: 0.2px;
+    visibility: visible !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.2px !important;
+}
+
+/* Styling untuk submenu dengan animasi */
+.nav#forms {
+    padding-left: 0;
+    transition: height 0.35s ease;
+}
+
+/* Untuk sub-menu items */
+.nav#forms li a {
+    padding-left: 45px !important;  /* Menambah indent untuk submenu */
+    position: relative;
+}
+
+/* Icon pada submenu */
+.nav#forms li a i {
+    margin-right: 8px;
+    position: absolute;
+    left: 25px;
+}
+
+/* Animasi collapse */
+.collapse {
+    display: none;
+    transition: height 0.35s ease;
+}
+
+.collapse.in {
+    display: block;
+}
+
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.35s ease;
+}
+
+/* Memastikan parent menu memiliki padding yang tepat */
+.side-nav > li > a {
+    padding-left: 15px !important;
+}
+
+/* Styling untuk panel submenu */
+.side-nav li.panel {
+    margin-bottom: 0 !important;
+}
+
+/* Hover effect untuk menu items */
+.side-nav li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }

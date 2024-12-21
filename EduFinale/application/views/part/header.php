@@ -20,6 +20,7 @@
     <link href="<?php echo base_url();?>css/plugins/morris/morris.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/datatables/datatables.css" rel="stylesheet">
+    <!-- <link href="<?php echo base_url();?>css/style.css" rel="stylesheet"> -->
     <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/demo.css" rel="stylesheet">
@@ -84,102 +85,113 @@
             </ul>
         </div>
     </nav>
-    <nav class="navbar-side" role="navigation">
-        <div class="navbar-collapse sidebar-collapse collapse">
-            <ul id="side" class="nav navbar-nav side-nav">
-                <li class="side-user hidden-xs">
-                    <div class="profile-card">
-                        <img class="profile-image" src="/img/profile/<?=$data->photo;?>" alt="Profile Photo">
-                        <div class="profile-info">
-                            <p class="profile-name"><?=$data->nama;?></p>
-                            <p class="profile-role"><?=ucfirst($data->tipe);?></p>
+        <nav class="navbar-side" role="navigation">
+            <div class="navbar-collapse sidebar-collapse collapse">
+                <ul id="side" class="nav navbar-nav side-nav">
+                    <li class="side-user hidden-xs">
+                        <div class="profile-card">
+                            <img class="profile-image" src="/img/profile/<?=$data->photo;?>" alt="Profile Photo">
+                            <div class="profile-info">
+                                <p class="profile-name"><?=$data->nama;?></p>
+                                <p class="profile-role"><?=ucfirst($data->tipe);?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </li>
-                <?php if($data->tipe == "admin"): ?>
-                <li>
-                    <a href="<?=base_url();?>admin">
-                        <i class="fa fa-tachometer"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=base_url();?>admin/profile">
-                        <i class="fa fa-user-circle"></i> Profil
-                    </a>
-                </li>
-                <li>
-                    <a href="<?=base_url();?>admin/users">
-                        <i class="fa fa-users"></i> Manajemen User
-                    </a>
-                </li>
-                <?php else: ?>
-                <li>
-                    <a href="<?=base_url();?>home">
-                        <i class="fa fa-tachometer"></i> Dashboard
-                    </a>
-                </li>
-                <li>
-                    <a href="/home/profil">
-                        <i class="fa fa-user-circle"></i> Profil
-                    </a>
-                </li>
-                <?php endif; ?>
-                <?php 
-                if ($data->tipe == "dosen") {
-                    echo '
+                        <div class="clearfix"></div>
+                    </li>
+                    <?php if($data->tipe == "admin"): ?>
                     <li>
-                        <a href="/pengajuan/dosen">
-                            <i class="fa fa-book"></i> Daftar Bimbingan Mhs
+                        <a href="<?=base_url();?>admin">
+                            <i class="fa fa-tachometer"></i> Dashboard
                         </a>
-                    </li>';
-                } elseif ($data->tipe == "rmk") {
-                    echo '
+                    </li>
                     <li>
-                        <a href="/pengajuan/rmk">
-                            <i class="fa fa-book"></i> Daftar Pengajuan
+                        <a href="<?=base_url();?>admin/profile">
+                            <i class="fa fa-user-circle"></i> Profil
                         </a>
-                    </li>';
-                } elseif ($data->tipe == "kaprodi") {
-                    echo '
-                    <li class="panel">
-                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                            <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
+                    </li>
+                    <li>
+                        <a href="<?=base_url();?>admin/users">
+                            <i class="fa fa-users"></i> Manajemen User
                         </a>
-                        <ul class="collapse nav" id="forms">
-                            <li>
-                                <a href="/pengajuan/kaprodi">
-                                    <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/sidang/daftar">
-                                    <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
-                                </a>
-                            </li>
-                        </ul>
-                    </li>';
-                } elseif ($data->tipe == "mahasiswa") {
-                    echo '
-                    <li class="panel">
-                        <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
-                            <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
+                    </li>
+                    <?php else: ?>
+                    <li>
+                        <a href="<?=base_url();?>home">
+                            <i class="fa fa-tachometer"></i> Dashboard
                         </a>
-                        <ul class="collapse nav" id="forms">
-                            <li>
-                                <a href="/pengajuan/judul">
-                                    <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/pengajuan/sidang">
-                                    <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
-                                </a>
-                            </li>
-                        </ul>
-                    </li>';
-                }
-                ?>
-            </ul>
-        </div>
-    </nav>
+                    </li>
+                    <li>
+                        <a href="/home/profil">
+                            <i class="fa fa-user-circle"></i> Profil
+                        </a>
+                    </li>
+                    <?php endif; ?>
+                    <?php 
+                    if ($data->tipe == "dosen") {
+                        echo '
+                        <li>
+                            <a href="/pengajuan/dosen">
+                                <i class="fa fa-book"></i> Daftar Bimbingan Mhs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/chat">
+                                <i class="fa fa-comments"></i> Chat Mahasiswa
+                            </a>
+                        </li>';
+                    } elseif ($data->tipe == "rmk") {
+                        echo '
+                        <li>
+                            <a href="/pengajuan/rmk">
+                                <i class="fa fa-book"></i> Daftar Pengajuan
+                            </a>
+                        </li>';
+                    } elseif ($data->tipe == "kaprodi") {
+                        echo '
+                        <li class="panel">
+                            <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
+                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="collapse nav" id="forms">
+                                <li>
+                                    <a href="/pengajuan/kaprodi">
+                                        <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/sidang/daftar">
+                                        <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>';
+                    } elseif ($data->tipe == "mahasiswa") {
+                        echo '
+                        <li class="panel">
+                            <a href="javascript:;" data-parent="#side" data-toggle="collapse" class="accordion-toggle collapsed" data-target="#forms">
+                                <i class="fa fa-edit"></i> Pengajuan <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="collapse nav" id="forms">
+                                <li>
+                                    <a href="/pengajuan/judul">
+                                        <i class="fa fa-angle-double-right"></i> Proposal Tugas Akhir
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/pengajuan/sidang">
+                                        <i class="fa fa-angle-double-right"></i> Pengajuan Sidang
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li style="margin-top: 15px;">
+                            <a href="/chat">
+                                <i class="fa fa-comments"></i> Chat Dosen
+                            </a>
+                        </li>';
+                    }
+                    ?>
+                </ul>
+            </div>
+        </nav></div></body>
+</html>
