@@ -125,6 +125,11 @@
                             <a href="/pengajuan/dosen">
                                 <i class="fa fa-book"></i> Daftar Bimbingan Mhs
                             </a>
+                        </li>
+                        <li>
+                            <a href="/chat/dosen">
+                                <i class="fa fa-comments"></i> Chat dengan Mahasiswa
+                            </a>
                         </li>';
                     } elseif ($data->tipe == "rmk") {
                         echo '

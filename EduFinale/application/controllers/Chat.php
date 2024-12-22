@@ -32,6 +32,18 @@ class Chat extends CI_Controller {
     }
 
     public function index() {
+        $this->load_chat_interface();
+    }
+
+    public function dosen() {
+        if($this->user->tipe != 'dosen') {
+            show_404();
+            return;
+        }
+        $this->load_chat_interface();
+    }
+
+    private function load_chat_interface() {
         if($this->user->tipe == 'mahasiswa') {
             // Get dosen pembimbing dari database
             $sql = "SELECT DISTINCT u.* FROM user u 
