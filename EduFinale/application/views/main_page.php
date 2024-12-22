@@ -14,9 +14,7 @@ function status($status) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="page-title">
-                            <h1>Dashboard
-                                <small></small>
-                            </h1>
+                            <h1>Dashboard</h1>
                             <ol class="breadcrumb">
                                 <li class="active"><i class="fa fa-dashboard"></i> Dashboard</li>
                             </ol>

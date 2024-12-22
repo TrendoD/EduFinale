@@ -5,12 +5,12 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="page-title">
-                    <h1><?= $title ?>
-                        <small><?= $description ?></small>
+                    <h1><?= ($data->tipe == "dosen") ? "Chat Mahasiswa Bimbingan" : "Chat Dosen Pembimbing" ?>
+                        <small><?= ($data->tipe == "dosen") ? "Komunikasi dengan Mahasiswa Bimbingan" : "Komunikasi dengan Dosen Pembimbing" ?></small>
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="<?= base_url('') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                        <li class="active"><?= $title ?></li>
+                        <li class="active"><?= ($data->tipe == "dosen") ? "Chat Mahasiswa Bimbingan" : "Chat Dosen Pembimbing" ?></li>
                     </ol>
                 </div>
             </div>
@@ -106,9 +106,7 @@
                                             <div class="input-group">
                                                 <input type="text" id="message-input" class="form-control" placeholder="Ketik pesan...">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-primary" type="button" id="send-message">
-                                                        <i class="fa fa-paper-plane"></i> Kirim
-                                                    </button>
+                                                    <button class="btn btn-primary" type="button" id="send-message"><i class="fa fa-paper-plane"></i> Kirim</button>
                                                 </span>
                                             </div>
                                         </div>

@@ -487,6 +487,18 @@ a:focus {
 	font-weight: bold;
 }
 
+.edufinale-img {
+	width: 20px;
+	height: 20px;
+	margin-bottom: 5px;
+}
+
+.edufinale-span {
+	margin-left: 40px;
+	color: #fff;
+	font-weight: bold;
+}
+
 .nav-top .nav-search {
 	padding: 8px 15px;
 	position: relative;
@@ -558,19 +570,26 @@ a:focus {
 	background-color: #1976d2;
 }
 
+/* -- Chat Widget Styles */
+
+.chat-widget {
+	max-height: 300px;
+	overflow: auto;
+}
+
 .profile-card {
 	background: #fff;
 	border-radius: 8px;
 	display: flex;
 	align-items: center;
 	margin-left: -10px;
-	margin-bottom: 60px;
 }
 .profile-image {
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
 	margin-right: 12px;
+	margin-top: 15px;
 	flex-shrink: 0;
 }
 .profile-info {
@@ -579,7 +598,7 @@ a:focus {
 }
 .profile-name {
 	font-size: 13px;
-	font-weight: 500;
+	font-weight: bold;
 	margin: 0;
 	color: #333;
 	white-space: nowrap;
@@ -605,7 +624,7 @@ a:focus {
 	color: #fff;
 	background-color: #1976d2;
 	border-radius: 30px;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 }
 
 .navbar-side .side-nav li.panel ul li {
@@ -708,6 +727,7 @@ a:focus {
 	margin: 0;
 	margin-bottom: 15px;
 	font-size: 26px;
+	font-weight: bold;
 }
 
 .page-title small {
@@ -1195,14 +1215,14 @@ fieldset[disabled] .btn-orange,
 .btn-orange[disabled]:hover,
 fieldset[disabled] .btn-orange:hover,
 .btn-orange.disabled:focus,
-	btn-orange[disabled]:focus,
-	fieldset[disabled] .btn-orange:focus,
-	.btn-orange.disabled:active,
-	.btn-orange[disabled]:active,
-	fieldset[disabled] .btn-orange:active,
-	.btn-orange.disabled.active,
-	.btn-orange[disabled].active,
-	fieldset[disabled] .btn-orange.active {
+btn-orange[disabled]:focus,
+fieldset[disabled] .btn-orange:focus,
+.btn-orange.disabled:active,
+.btn-orange[disabled]:active,
+fieldset[disabled] .btn-orange:active,
+.btn-orange.disabled.active,
+.btn-orange[disabled].active,
+fieldset[disabled] .btn-orange.active {
 	border-color: #f4a62a;
 	background-color: #f5ab35;
 }
@@ -1230,14 +1250,14 @@ fieldset[disabled] .btn-blue,
 .btn-blue[disabled]:hover,
 fieldset[disabled] .btn-blue:hover,
 .btn-blue.disabled:focus,
-	btn-blue[disabled]:focus,
-	fieldset[disabled] .btn-blue:focus,
-	.btn-blue.disabled:active,
-	.btn-blue[disabled]:active,
-	fieldset[disabled] .btn-blue:active,
-	.btn-blue.disabled.active,
-	.btn-blue[disabled].active,
-	fieldset[disabled] .btn-blue.active {
+btn-blue[disabled]:focus,
+fieldset[disabled] .btn-blue:focus,
+.btn-blue.disabled:active,
+.btn-blue[disabled]:active,
+fieldset[disabled] .btn-blue:active,
+.btn-blue.disabled.active,
+.btn-blue[disabled].active,
+fieldset[disabled] .btn-blue.active {
 	border-color: #3792ce;
 	background-color: #3792ce;
 }
@@ -1265,14 +1285,14 @@ fieldset[disabled] .btn-red,
 .btn-red[disabled]:hover,
 fieldset[disabled] .btn-red:hover,
 .btn-red.disabled:focus,
-	btn-red[disabled]:focus,
-	fieldset[disabled] .btn-red:focus,
-	.btn-red.disabled:active,
-	.btn-red[disabled]:active,
-	fieldset[disabled] .btn-red:active,
-	.btn-red.disabled.active,
-	.btn-red[disabled].active,
-	fieldset[disabled] .btn-red.active {
+btn-red[disabled]:focus,
+fieldset[disabled] .btn-red:focus,
+.btn-red.disabled:active,
+.btn-red[disabled]:active,
+fieldset[disabled] .btn-red:active,
+.btn-red.disabled.active,
+.btn-red[disabled].active,
+fieldset[disabled] .btn-red.active {
 	border-color: #e95e50;
 	background-color: #eb6759;
 }
@@ -1300,14 +1320,14 @@ fieldset[disabled] .btn-purple,
 .btn-purple[disabled]:hover,
 fieldset[disabled] .btn-purple:hover,
 .btn-purple.disabled:focus,
-	btn-purple[disabled]:focus,
-	fieldset[disabled] .btn-purple:focus,
-	.btn-purple.disabled:active,
-	.btn-purple[disabled]:active,
-	fieldset[disabled] .btn-purple:active,
-	.btn-purple.disabled.active,
-	.btn-purple[disabled].active,
-	fieldset[disabled] .btn-purple.active {
+btn-purple[disabled]:focus,
+fieldset[disabled] .btn-purple:focus,
+.btn-purple.disabled:active,
+.btn-purple[disabled]:active,
+fieldset[disabled] .btn-purple:active,
+.btn-purple.disabled.active,
+.btn-purple[disabled].active,
+fieldset[disabled] .btn-purple.active {
 	border-color: #3792ce;
 	background-color: #3792ce;
 }
@@ -1324,11 +1344,11 @@ fieldset[disabled] .btn-purple:hover,
 .btn-default:focus,
 .btn-dark-blue:focus,
 .btn-default:active,
-	btn-dark-blue:active,
-	btn-default.active,
-	btn-dark-blue.active,
-	open .dropdown-toggle.btn-default,
-	open .dropdown-toggle.btn-dark-blue {
+btn-dark-blue:active,
+btn-default.active,
+btn-dark-blue.active,
+open .dropdown-toggle.btn-default,
+open .dropdown-toggle.btn-dark-blue {
 	border-color: #3792ce;
 	color: #fff;
 	background-color: #3792ce;
@@ -1341,29 +1361,29 @@ fieldset[disabled] .btn-default,
 .btn-default[disabled]:hover,
 fieldset[disabled] .btn-default:hover,
 .btn-default.disabled:focus,
-	btn-default[disabled]:focus,
-	fieldset[disabled] .btn-default:focus,
-	.btn-default.disabled:active,
-	.btn-default[disabled]:active,
-	fieldset[disabled] .btn-default:active,
-	.btn-default.disabled.active,
-	.btn-default[disabled].active,
-	fieldset[disabled] .btn-default.active,
-	.btn-dark-blue.disabled,
-	.btn-dark-blue[disabled],
-	fieldset[disabled] .btn-dark-blue,
-	.btn-dark-blue.disabled:hover,
-	.btn-dark-blue[disabled]:hover,
-	fieldset[disabled] .btn-dark-blue:hover,
-	.btn-dark-blue.disabled:focus,
-	.btn-dark-blue[disabled]:focus,
-	fieldset[disabled] .btn-dark-blue:focus,
-	.btn-dark-blue.disabled:active,
-	.btn-dark-blue[disabled]:active,
-	fieldset[disabled] .btn-dark-blue:active,
-	.btn-dark-blue.disabled.active,
-	.btn-dark-blue[disabled].active,
-	fieldset[disabled] .btn-dark-blue.active {
+btn-default[disabled]:focus,
+fieldset[disabled] .btn-default:focus,
+.btn-default.disabled:active,
+.btn-default[disabled]:active,
+fieldset[disabled] .btn-default:active,
+.btn-default.disabled.active,
+.btn-default[disabled].active,
+fieldset[disabled] .btn-default.active,
+.btn-dark-blue.disabled,
+.btn-dark-blue[disabled],
+fieldset[disabled] .btn-dark-blue,
+.btn-dark-blue.disabled:hover,
+.btn-dark-blue[disabled]:hover,
+fieldset[disabled] .btn-dark-blue:hover,
+.btn-dark-blue.disabled:focus,
+.btn-dark-blue[disabled]:focus,
+fieldset[disabled] .btn-dark-blue:focus,
+.btn-dark-blue.disabled:active,
+.btn-dark-blue[disabled]:active,
+fieldset[disabled] .btn-dark-blue:active,
+.btn-dark-blue.disabled.active,
+.btn-dark-blue[disabled].active,
+fieldset[disabled] .btn-dark-blue.active {
 	border-color: #3792ce;
 	background-color: #3792ce;
 }
@@ -1378,7 +1398,7 @@ fieldset[disabled] .btn-default:hover,
 .btn-white:focus,
 .btn-white:active,
 .btn-white.active,
-	open .dropdown-toggle.btn-white {
+open .dropdown-toggle.btn-white {
 	border-color: #adadad;
 	color: #333333;
 	background-color: #ebebeb;
@@ -2158,10 +2178,4 @@ Custom
 	color: #fff;
 	background-color: #d9534f;
 	border-color: #d43f3a;
-}
-
-.dashboard-profile-card .profile-role {
-    margin: 5px 0 0;
-    font-size: 14px;
-    color: #666;
 }

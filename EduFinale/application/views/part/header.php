@@ -21,10 +21,9 @@
     <link href="<?php echo base_url();?>css/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins/datatables/datatables.css" rel="stylesheet">
     <!-- <link href="<?php echo base_url();?>css/style.css" rel="stylesheet"> -->
-    <link href="<?php echo base_url();?>css/style.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>css/style.css?v=1.0" rel="stylesheet">
     <link href="<?php echo base_url();?>css/plugins.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/demo.css" rel="stylesheet">
-    <link href="<?php echo base_url();?>css/profile-card.css" rel="stylesheet">
     <link href="<?php echo base_url();?>css/sweetalert2.css" rel="stylesheet">
     <script src="<?php echo base_url();?>js/plugins/messenger/messenger.min.js"></script>
     <script src="<?php echo base_url();?>js/plugins/messenger/messenger-theme-flat.js"></script>
@@ -39,7 +38,7 @@
                 <i class="fa fa-bars"></i> Menu
             </button>
             <div class="navbar-brand">
-                <span style="color:#fff">EduFinale</span>
+                <span class="edufinale-span" ><img class="edufinale-img" src="/img/edufinaleputih.png" alt="" >  EduFinale</span>
                 <a href="/home"></a>
             </div>
         </div>
@@ -49,14 +48,6 @@
                     <a href="#" id="sidebar-toggle" data-toggle="tooltip" data-placement="right" title="Tampilkan/Sembunyikan Menu">
                         <i class="fa fa-bars"></i>
                     </a>
-                </li>
-                <li class="nav-search">
-                    <form role="form">
-                        <input type="search" class="form-control" placeholder="Cari sesuatu...">
-                        <button type="submit" class="btn">
-                            <i class="fa fa-search"></i>
-                        </button>
-                    </form>
                 </li>
             </ul>
             <ul class="nav navbar-right">
@@ -74,6 +65,7 @@
                                 <i class="fa fa-user-circle"></i> Profil
                             </a>
                         </li>
+                        
                         <li class="divider"></li>
                         <li>
                             <a href="/home/logout">
@@ -89,7 +81,7 @@
             <div class="navbar-collapse sidebar-collapse collapse">
                 <ul id="side" class="nav navbar-nav side-nav">
                     <li class="side-user hidden-xs">
-                        <div class="profile-card">
+                    <div class="profile-card">
                             <img class="profile-image" src="/img/profile/<?=$data->photo;?>" alt="Profile Photo">
                             <div class="profile-info">
                                 <p class="profile-name"><?=$data->nama;?></p>
@@ -132,11 +124,6 @@
                         <li>
                             <a href="/pengajuan/dosen">
                                 <i class="fa fa-book"></i> Daftar Bimbingan Mhs
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/chat">
-                                <i class="fa fa-comments"></i> Chat Mahasiswa
                             </a>
                         </li>';
                     } elseif ($data->tipe == "rmk") {
@@ -183,8 +170,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
-                        <li style="margin-top: 15px;">
+                             <li>
                             <a href="/chat">
                                 <i class="fa fa-comments"></i> Chat Dosen
                             </a>
@@ -193,5 +179,4 @@
                     ?>
                 </ul>
             </div>
-        </nav></div></body>
-</html>
+        </nav>

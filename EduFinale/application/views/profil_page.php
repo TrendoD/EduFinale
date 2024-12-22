@@ -8,7 +8,7 @@
                         <small></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i>  Home
+                        <li style="font-weight: bold;" ><i class="fa fa-dashboard"></i>  Home
                         </li>
                         <li class="active">Profil</li>
                     </ol>
