@@ -65,6 +65,70 @@ class Aksi extends CI_Controller {
 		redirect('/pengajuan/kaprodi','refresh');
 	}
 
+    public function tambah_riwayat() {
+        if ($this->user->tipe != 'dosen') redirect('/home','refresh');
+        
+        $id_mahasiswa = $this->input->post('id_mahasiswa');
+        
+        $data = array(
+            'id_mahasiswa' => $id_mahasiswa,
+            'id_dosen' => $this->user->nim,
+            'pertemuan' => $this->input->post('pertemuan'),
+            'tanggal' => $this->input->post('tanggal'),
+            'waktu_mulai' => $this->input->post('waktu_mulai'),
+            'waktu_selesai' => $this->input->post('waktu_selesai'),
+            'tempat' => $this->input->post('tempat'),
+            'catatan' => $this->input->post('catatan'),
+            'created_at' => date('Y-m-d H:i:s')
+        );
+        
+        $this->db->insert('riwayat_bimbingan', $data);
+        
+        // Get pengajuan_judul id
+        $pengajuan = $this->db->get_where('pengajuan_judul', array('nim' => $id_mahasiswa))->row();
+        if ($pengajuan) {
+            // Submit form POST ke detail
+            echo '<form id="redirectForm" method="POST" action="'.base_url('detail').'">';
+            echo '<input type="hidden" name="id" value="'.$pengajuan->id.'">';
+            echo '</form>';
+            echo '<script>document.getElementById("redirectForm").submit();</script>';
+        } else {
+            redirect('/home','refresh');
+        }
+    }
+    
+    public function hapus_riwayat($id) {
+        if ($this->user->tipe != 'dosen') redirect('/home','refresh');
+        
+        // Ambil id_mahasiswa sebelum hapus
+        $riwayat = $this->db->get_where('riwayat_bimbingan', array(
+            'id_riwayat' => $id,
+            'id_dosen' => $this->user->nim
+        ))->row();
+        
+        if($riwayat) {
+            $id_mahasiswa = $riwayat->id_mahasiswa;
+            
+            $this->db->where('id_riwayat', $id);
+            $this->db->where('id_dosen', $this->user->nim);
+            $this->db->delete('riwayat_bimbingan');
+            
+            // Get pengajuan_judul id
+            $pengajuan = $this->db->get_where('pengajuan_judul', array('nim' => $id_mahasiswa))->row();
+            if ($pengajuan) {
+                // Submit form POST ke detail
+                echo '<form id="redirectForm" method="POST" action="'.base_url('detail').'">';
+                echo '<input type="hidden" name="id" value="'.$pengajuan->id.'">';
+                echo '</form>';
+                echo '<script>document.getElementById("redirectForm").submit();</script>';
+            } else {
+                redirect('/home','refresh');
+            }
+        } else {
+            redirect('/home','refresh');
+        }
+    }
+
 }
 
 /* End of file Aksi.php */

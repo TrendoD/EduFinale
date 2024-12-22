@@ -57,9 +57,19 @@ class Detail extends CI_Controller {
 	}
 
 	public function _dosen($id) {
+        $detail = $this->db->get_where('pengajuan_judul', array('id'=>$id))->row();
+        if (!$detail && $this->input->get('nim')) {
+            $detail = $this->db->get_where('pengajuan_judul', array('nim'=>$this->input->get('nim')))->row();
+        }
+        
+        if (!$detail) {
+            redirect('home','refresh');
+            return;
+        }
+
 		$data = array(
 			'data' => $this->user,
-			'detail' => $this->db->get_where('pengajuan_judul', array('id'=>$id))->row(),
+			'detail' => $detail,
 			'dosen' => $this->db->get_where('user', array('tipe'=>'dosen'))
 		);
 		$this->load->view('part/header', $data); 

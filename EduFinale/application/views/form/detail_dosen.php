@@ -182,15 +182,12 @@ function namaDosen($arr, $nim) {
 
                     <!-- begin RIGHT COLUMN -->
                     <div class="col-lg-12">
-
-                        <div class="row">
-                            <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="portlet portlet-green">
                                     <div class="portlet-heading">
                                         <div class="portlet-title">
-                                            <h4><i class="fa fa-exchange fa-fw"></i> Aksi</h4>
+                                            <h4><i class="fa fa-exchange fa-fw"></i> Riwayat Bimbingan</h4>
                                         </div>
                                         <div class="portlet-widgets">
                                             <a data-toggle="collapse" data-parent="#accordion" href="#transactionsPortlet"><i class="fa fa-chevron-down"></i></a>
@@ -199,37 +196,61 @@ function namaDosen($arr, $nim) {
                                     </div>
                                     <div id="transactionsPortlet" class="panel-collapse collapse in">
                                         <div class="portlet-body">
-                                            
+                                            <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modalTambahRiwayat">
+                                                <i class="fa fa-plus"></i> Tambah Riwayat
+                                            </button>
+                                            <br><br>
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Pertemuan</th>
+                                                            <th>Tanggal</th>
+                                                            <th>Waktu</th>
+                                                            <th>Tempat</th>
+                                                            <th>Catatan</th>
+                                                            <th>Aksi</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php 
+                                                        $riwayat = $this->db->get_where('riwayat_bimbingan', array(
+                                                            'id_mahasiswa' => $detail->nim,
+                                                            'id_dosen' => $this->session->userdata('nim')
+                                                        ))->result();
+                                                        
+                                                        if(!empty($riwayat)): 
+                                                            foreach($riwayat as $r): 
+                                                        ?>
+                                                            <tr>
+                                                                <td><?= $r->pertemuan ?></td>
+                                                                <td><?= date('d/m/Y', strtotime($r->tanggal)) ?></td>
+                                                                <td><?= $r->waktu_mulai ?> - <?= $r->waktu_selesai ?></td>
+                                                                <td><?= $r->tempat ?></td>
+                                                                <td><?= $r->catatan ?></td>
+                                                                <td>
+                                                                    <a href="<?= base_url('aksi/hapus_riwayat/'.$r->id_riwayat) ?>" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus riwayat ini?')">
+                                                                        <i class="fa fa-trash-o"></i>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        <?php 
+                                                            endforeach;
+                                                        else: 
+                                                        ?>
+                                                            <tr>
+                                                                <td colspan="6" class="text-center">Belum ada riwayat bimbingan</td>
+                                                            </tr>
+                                                        <?php endif; ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /.col-lg-12 -->
-
                         </div>
                     </div>
-
-                    <script type="text/javascript">
-                        $(document).ready(function() {
-                            
-                        });
-                    </script>
-
-                            <!-- Form Controls -->
-
-                            <!-- /.col-lg-12 (nested) -->
-                            <!-- End Form Controls -->
-
-                            <!-- Input Sizing -->
-
-                            <!-- /.col-lg-12 (nested) -->
-                            <!-- End Form Controls -->
-
-                        </div>
-                        <!-- /.row (nested) -->
-
-                    </div>
-                    <!-- /.col-lg-6 -->
                     <!-- end RIGHT COLUMN -->
 
                 </div>
@@ -247,3 +268,54 @@ function namaDosen($arr, $nim) {
     <!-- /#wrapper -->
 
     <!-- GLOBAL SCRIPTS -->
+
+<!-- Modal Tambah Riwayat -->
+<div class="modal fade" id="modalTambahRiwayat" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Tambah Riwayat Bimbingan</h4>
+            </div>
+            <form action="<?= base_url('aksi/tambah_riwayat') ?>" method="POST">
+                <div class="modal-body">
+                    <input type="hidden" name="id_mahasiswa" value="<?= $detail->nim ?>">
+                    
+                    <div class="form-group">
+                        <label>Pertemuan Ke-</label>
+                        <input type="number" class="form-control" name="pertemuan" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tanggal</label>
+                        <input type="date" class="form-control" name="tanggal" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Waktu Mulai</label>
+                        <input type="time" class="form-control" name="waktu_mulai" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Waktu Selesai</label>
+                        <input type="time" class="form-control" name="waktu_selesai" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Tempat</label>
+                        <input type="text" class="form-control" name="tempat" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Catatan</label>
+                        <textarea class="form-control" name="catatan" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                       <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
+                       <button type="submit" class="btn btn-primary">Simpan</button>
+                   </div>
+               </form>
+           </div>
+       </div>
+   </div>
