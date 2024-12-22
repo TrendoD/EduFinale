@@ -31,13 +31,13 @@ function namaDosen($arr, $nim) {
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="page-title">
-                            <h1>Pengajuan Judul Tugas Akhir
+                            <h1>Detail Pengajuan Proposal Tugas Akhir
                                 <small></small>
                             </h1>
                             <ol class="breadcrumb">
-                                <li><i class="fa fa-dashboard"></i>  Pengajuan
+                                <li><i class="fa fa-dashboard"></i>  Detail
                                 </li>
-                                <li class="active">Judul Tugas Akhir</li>
+                                <li class="active">Pengajuan Proposal Tugas Akhir</li>
                             </ol>
                         </div>
                         <!--
