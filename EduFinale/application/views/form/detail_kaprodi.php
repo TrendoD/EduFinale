@@ -139,7 +139,10 @@ function namaDosen($arr, $nim) {
                                                 <div class="form-group">
                                                     <label for="textInput" class="col-sm-3 control-label">Berkas</label>
                                                     <div class="col-sm-9">
-                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->berkas?> <a download href="/berkas/<?=$detail->berkas?>">(<strong>Unduh</strong>)</a></label>
+                                                        <label class="control-label" style="font-weight: normal;"><?=$detail->berkas?></label>
+                                                        <a href="/berkas/<?=$detail->berkas?>" download class="btn btn-xs btn-primary" style="margin-left: 10px;">
+                                                            <i class="fa fa-download"></i> Unduh
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
