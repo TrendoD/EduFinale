@@ -175,9 +175,15 @@
                                     </a>
                                 </li>
                             </ul>
-                             <li>
+                        </li>
+                        <li>
                             <a href="/chat">
                                 <i class="fa fa-comments"></i> Chat Dosen
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/riwayat">
+                                <i class="fa fa-history"></i> Riwayat Bimbingan
                             </a>
                         </li>';
                     }
