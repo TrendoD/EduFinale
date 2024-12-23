@@ -1,130 +1,108 @@
 <h2>Sistem Informasi Pengajuan Skripsi dengan Codeigniter</h2>
 
-<p align= "justify">Pengajuan judul skripsi merupakan tahap awal dalam proses pembuatan skripsi, di Perguruan Tinggi ini proses pengajuan judul skripsi masih dilakukan secara manual. Pengajuan judul skripsi masih menggunakan form kertas dan antara satu pihak dengan pihak lain yang terlibat dalam proses ini harus bertatap muka secara langsung, sehingga membutuhkan waktu untuk bisa menyelesaikan tahap pertama ini. Diharapkan dengan dibuatnya Aplikasi Pengajuan Skripsi ini, dapat mempercepat proses tersebut.
+<p align="justify">EduFinale adalah sistem manajemen tugas akhir berbasis web yang dirancang untuk memudahkan proses pengajuan dan pengelolaan tugas akhir di perguruan tinggi. Sistem ini mengintegrasikan seluruh proses dari pengajuan judul hingga sidang akhir dalam satu platform yang komprehensif.
 
-Secara keseluruhan Aplikasi Pengajuan Skripsi ini memiliki 4 aktor, yaitu mahasiswa, dosen, tim Rumpun Mata Kuliah (RMK), dan kaprodi. Berikut adalah fitur-fitur yang tersedia pada ke empat aktor tersebut:
+Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (RMK), kaprodi, dan administrator. Berikut adalah fitur-fitur yang tersedia untuk masing-masing aktor:
 
 <h3>Mahasiswa</h3>
-1. Mengajukan Proposal Tugas Akhir
-  
-![image](https://user-images.githubusercontent.com/32997439/196482258-d97f6568-4263-4073-8194-c4aae8416add.png)<p align="center"><sup>Mahasiswa melakukan pengajuan proposal Tugas Akhir</sup></p>
 
-2. Melihat Status Pengajuan Proposal
+1. Pengajuan Proposal Tugas Akhir
+   - Mengisi formulir pengajuan online
+   - Upload berkas proposal (format: PDF, DOCX, DOC)
+   - Memilih dosen pembimbing 1
+   - Memilih bidang minat
 
-![image](https://user-images.githubusercontent.com/32997439/196483707-f1bbacc2-9c0b-4292-850d-1049ec6a7bbd.png)
-<p align="center"><sup>Status proposal masih ditinjau oleh TIM RMK</sup></p>
+2. Status Pengajuan Proposal
+   - Monitoring status (Formulir, Ditinjau, Disetujui, Ditolak)
+   - Notifikasi perubahan status
+   - Akses ke feedback dari tim RMK
 
-![image](https://user-images.githubusercontent.com/32997439/196483930-1679de69-fe1d-4175-a017-c1d1a0fec4cb.png)
-<p align="center"><sup>Status proposal ditolak oleh Tim RMK, sehingga mahasiswa harus melakukan upload ulang proposal</sup></p>
+3. Pengajuan Sidang Tugas Akhir
+   - Upload bukti bimbingan (format: JPEG, JPG, PNG)
+   - Upload buku tugas akhir (format: PDF, DOCX, DOC)
+   - Melihat jadwal sidang yang ditentukan
 
-![image](https://user-images.githubusercontent.com/32997439/196484135-e8a38428-9ce2-425c-bf9a-76579ed6e29b.png)
-<p align="center"><sup>Status proposal di perlukan Revisi, dan mahasiswa dapat melakukan perbaikan proposal</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196484230-5669fd15-986f-42c1-8aa1-42d87ca5d1b0.png)
-<p align="center"><sup>Status proposal sudah disetujui oleh Tim RMK dan sedang menunggu keputusan Kaprodi untuk menentukan dosen pembimbing 2</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196484307-d7cc45d8-858b-4894-a44d-342731a310af.png)
-<p align="center"><sup>Kaprodi sudah menetukan dosen pembimbing 2, sehingga mahasiswa sudah bisa melakukan pengajuan Sidang Tugas Akhir.</sup></p>
-
-3. Melakukan Pengajuan Sidang Tugas Akhir
-
-![image](https://user-images.githubusercontent.com/32997439/196487258-a64671df-0009-45c9-86fa-15ee03044c2c.png)
-<p align="center"><sup>Mahasiswa dapat melakukan pengajuan sidang Tugas Akhir ketika proposal sudah disetujui. Untuk mengajukan sidang Tugas Akhir diperlukan bukti bimbingan berupa foto dan buku Tugas Akhir dalam bentuk pdf</sup></p>
-
-4. Melihat Status Pengajuan Tugas Akhir
-
-![image](https://user-images.githubusercontent.com/32997439/196487387-23a37038-0bb8-449c-8438-b7020c077316.png)
-<p align="center"><sup>Ketika sudah melakukan pengajuan, mahasiswa harus menunggu peninjauan dari kaprodi untuk penentuan dosen penguji dan tanggal sidang</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196487499-446ab3e4-bd00-4217-9c61-c066e633afee.png)
-<p align="center"><sup>Status pengajuan sidang akan berubah seperti gambar diatas ketika kaprodi sudah menentukan tanggal sidang dan dosen pembimbing</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196487595-342243e1-d87b-4d69-8143-962a13e6f266.png)
-<p align="center"><sup>Setelah proses sidang selesai, kaprodi dapat memasukkan nilai akhir mahasiswa tersebut. Dan status pengajuan sidang akan berubah seperti gambar diatas.</sup></p>
-
-5. Fitur Lain
-
-![image](https://user-images.githubusercontent.com/32997439/196487914-24b16770-5a96-4f0d-bbdb-deefcf4049a6.png)
-<p align="center"><sup>Dashboard Mahasiswa</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196488036-079ec161-8100-4024-bad8-5132758fcf86.png)
-<p align="center"><sup> Edit Profil Mahasiswa</sup></p>
-
-<h3>Tim Rumpun Mata Kuliah (RMK)</h3>
-1. Melihat Daftar Pengajuan Proposal
-
-![image](https://user-images.githubusercontent.com/32997439/196488541-5d863412-344d-457a-87b8-74c4f7f65ea5.png)
-<p align="center"><sup>Tim RMK dapat melihat semua list proposal yang sudah diajukan</sup></p>
-
-2. Melihat Detil dan Melakukan Persetujuan Proposal
-
-![image](https://user-images.githubusercontent.com/32997439/196488855-b75b25de-73f9-4a4e-ac55-33df1a476839.png)
-<p align="center"><sup>Tim RMK dapat melihat detil dari pengajuan proposal Tugas Akhir mahasiswa dan dapat mengunduh file proposal tersebut. Tim RMK dapat melakukan persetujuan, revisi, maupun menolak proposal tugas akhir yang sudah diajukan mahasiswa.</sup></p>
-
-3. Fitur Lainnya
-
-![image](https://user-images.githubusercontent.com/32997439/196488991-3781275e-5d55-492a-bc3f-66f690596ec5.png)
-<p align="center"><sup>Dashboard Tim RMK</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196489092-79e67998-4d11-4bff-8169-8e144a39cb10.png)
-<p align="center"><sup>Edit Profil Tim RMK</sup></p>
-
-<h3>Kaprodi</h3>
-1. Melihat Daftar Pengajuan Proposal Tugas Akhir
-
-![image](https://user-images.githubusercontent.com/32997439/196490455-cbea9341-4c58-4513-a0f4-e4d2753fde29.png)
-<p align="center"><sup>Kaprodi dapat melihat semua daftar proposal tugas akhir yang sudah diajukan</sup></p>
-
-2. Melihat Detil Proposal Tugas Akhir & Menentukan Dosen Pembimbing 2
-
-![image](https://user-images.githubusercontent.com/32997439/196490598-ced39823-ee87-4b75-bf02-1d9047281bbf.png)
-<p align="center"><sup>Ketika melihat detil proposal tugas akhir mahasiswa, kaprodi dapat menentukan dosen pembimbing 2 untuk mahasiswa tersebut.</sup></p>
-
-3. Melihat Daftar Tugas Akhir
-
-![image](https://user-images.githubusercontent.com/32997439/196490695-4a5a4ff6-1765-492f-8d81-46d1fe17c3a7.png)
-<p align="center"><sup>Kaprodi dapat melihat daftar semua Tugas Akhir yang sudah diajukan mahasiswa.</sup></p>
-
-4. Melihat Detil Tugas Akhir & Menentukan Jadwal dan Dosen Penguji Sidang Tugas Akhir
-
-![image](https://user-images.githubusercontent.com/32997439/196490765-3e5ea44d-148f-4b83-aed6-563532cf5adc.png)
-<p align="center"><sup>Ketika melihat detil pengajuan sidang Tugas Akhir, kaprodi dapat menentukan tanggal dan dosen penguji untuk mahasiswa tersebut.</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196490865-0157a701-917e-43b7-96a1-14e37467cbcb.png)
-<p align="center"><sup>Kaprodi juga dapat mengunduh file bukti bimbingan beserta soft file buku Tugas Akhir mahasiswa tersebut</sup></p>
-
-5. Melakukan Input Nilai 
-
-![image](https://user-images.githubusercontent.com/32997439/196491050-394a550d-08c9-43be-856b-193b4695726f.png)
-<p align="center"><sup>Ketika pengajuan sidang Tugas Akhir sudah disetujui, maka akan muncul daftar pengajuan yang harus dilakukan input nilai</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196491109-2600b956-46b2-46fa-9516-0bb71d069ec4.png)
-
-6. Fitur Lainnya
-
-![image](https://user-images.githubusercontent.com/32997439/196491139-50a493c1-f1d1-4a35-bce2-1df24c5bbd31.png)
-<p align="center"><sup>Dashboard Kaprodi</sup></p>
-
-![image](https://user-images.githubusercontent.com/32997439/196491198-5fefa2ec-3e2f-4b39-aef5-4ecb1558e8ec.png)
-<p align="center"><sup>Edit Profil Kaprodi</sup></p>
-
+4. Monitoring Bimbingan
+   - Akses ke riwayat bimbingan
+   - Chat dengan dosen pembimbing
+   - Melihat catatan dan feedback dosen
 
 <h3>Dosen</h3>
-1. Melihat Daftar Mahasiswa Bimbingan
 
-![image](https://user-images.githubusercontent.com/32997439/196491262-cf9506c9-ff52-469c-b015-908bb1b14ea0.png)
-<p align="center"><sup>Dosen dapat melihat semua daftar mahasiswa bimbingan Tugas Akhirnya</sup></p>
+1. Manajemen Bimbingan
+   - Melihat daftar mahasiswa bimbingan
+   - Mencatat riwayat bimbingan
+   - Input detail pertemuan (tanggal, waktu, tempat, catatan)
+   - Upload dokumentasi bimbingan
 
-2. Melihat Detil Proposal Tugas Akhir
+2. Komunikasi
+   - Chat dengan mahasiswa bimbingan
+   - Memberikan feedback langsung
+   - Akses ke berkas mahasiswa
 
-![image](https://user-images.githubusercontent.com/32997439/196491345-a41cedbe-034f-476f-abb3-647bdc56f010.png)
-<p align="center"><sup>Dosen dapat melihat detil proposal dari mahasiswa bimbingannya dan dapat mengunduh file tersebut.</sup></p>
+3. Monitoring Progress
+   - Dashboard mahasiswa bimbingan
+   - Akses ke proposal dan tugas akhir
+   - Tracking progress bimbingan
 
-3. Fitur Lainnya
-  
-![image](https://user-images.githubusercontent.com/32997439/196491415-d0962084-daf5-4a55-876e-68ac0098b28a.png)
-<p align="center"><sup>Dashboard Dosen</sup></p>
+<h3>Tim Rumpun Mata Kuliah (RMK)</h3>
 
-![image](https://user-images.githubusercontent.com/32997439/196491553-c6efa14c-4732-40be-adef-4239f21ce694.png)
-<p align="center"><sup>Edit Profil Dosen</sup></p>
+1. Review Proposal
+   - Akses ke daftar pengajuan proposal
+   - Memberikan persetujuan/revisi/penolakan
+   - Input feedback untuk mahasiswa
+
+2. Monitoring
+   - Dashboard status proposal
+   - Statistik pengajuan
+   - Akses ke detail setiap proposal
+
+<h3>Kaprodi</h3>
+
+1. Manajemen Proposal
+   - Review proposal yang telah disetujui RMK
+   - Penentuan dosen pembimbing 2
+   - Akses ke detail proposal
+
+2. Manajemen Sidang
+   - Penentuan jadwal sidang
+   - Pemilihan dosen penguji
+   - Input nilai sidang
+   - Monitoring status sidang
+
+<h3>Administrator</h3>
+
+1. Manajemen User
+   - Tambah/edit/hapus user
+   - Pengaturan role dan akses
+   - Monitoring aktivitas user
+
+2. Dashboard Sistem
+   - Statistik keseluruhan (total users, mahasiswa, dosen, proposal)
+   - Monitoring proposal dan sidang pending
+   - Informasi sistem dan database
+
+3. Manajemen Teknis
+   - Pengaturan sistem
+   - Backup data
+   - Maintenance sistem
+
+<h3>Fitur Umum</h3>
+
+1. Antarmuka Responsif
+   - Akses melalui berbagai perangkat
+   - Tampilan yang konsisten
+   - User experience yang optimal
+
+2. Keamanan
+   - Role-based access control
+   - Enkripsi data
+   - Validasi input
+
+3. Dokumentasi Digital
+   - Penyimpanan berkas terstruktur
+   - Format file yang terstandar
+   - Sistem backup otomatis
+
+Sistem ini dikembangkan menggunakan framework CodeIgniter dengan dukungan database MySQL, menjamin performa dan reliabilitas yang tinggi dalam pengelolaan proses tugas akhir.
 </p>
