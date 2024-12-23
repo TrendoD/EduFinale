@@ -1,10 +1,14 @@
-<h2>Sistem Informasi Pengajuan Skripsi dengan Codeigniter</h2>
+<h2>EduFinale - Sistem Manajemen Tugas Akhir - Dengan CodeIgniter</h2>
 
 <p align="justify">EduFinale adalah sistem manajemen tugas akhir berbasis web yang dirancang untuk memudahkan proses pengajuan dan pengelolaan tugas akhir di perguruan tinggi. Sistem ini mengintegrasikan seluruh proses dari pengajuan judul hingga sidang akhir dalam satu platform yang komprehensif.
 
 Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (RMK), kaprodi, dan administrator. Berikut adalah fitur-fitur yang tersedia untuk masing-masing aktor:
 
 <h3>Mahasiswa</h3>
+
+![Web Screenshot](EduFinale/img/mahasiswa.png
+)
+
 
 1. Pengajuan Proposal Tugas Akhir
    - Mengisi formulir pengajuan online
@@ -29,6 +33,9 @@ Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (R
 
 <h3>Dosen</h3>
 
+![Web Screenshot](EduFinale/img/dosen.png
+)
+
 1. Manajemen Bimbingan
    - Melihat daftar mahasiswa bimbingan
    - Mencatat riwayat bimbingan
@@ -47,6 +54,9 @@ Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (R
 
 <h3>Tim Rumpun Mata Kuliah (RMK)</h3>
 
+![Web Screenshot](EduFinale/img/koordinator.png
+)
+
 1. Review Proposal
    - Akses ke daftar pengajuan proposal
    - Memberikan persetujuan/revisi/penolakan
@@ -58,6 +68,9 @@ Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (R
    - Akses ke detail setiap proposal
 
 <h3>Kaprodi</h3>
+
+![Web Screenshot](EduFinale/img/kaprodi.png
+)
 
 1. Manajemen Proposal
    - Review proposal yang telah disetujui RMK
@@ -71,6 +84,9 @@ Aplikasi ini memiliki 5 aktor utama: mahasiswa, dosen, tim Rumpun Mata Kuliah (R
    - Monitoring status sidang
 
 <h3>Administrator</h3>
+
+![Web Screenshot](EduFinale/img/admin.png
+)
 
 1. Manajemen User
    - Tambah/edit/hapus user
