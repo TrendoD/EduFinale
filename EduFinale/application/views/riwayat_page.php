@@ -7,13 +7,13 @@
                         <small></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><i class="fa fa-dashboard"></i> Dashboard</li>
+                        <li style="font-weight: bold;" ><i class="fa fa-dashboard" ></i> Dashboard</li>
                         <li class="active">Riwayat Bimbingan</li>
                     </ol>
                 </div>
             </div>
         </div>
-
+        
         <div class="row">
             <div class="col-lg-12">
                 <div class="portlet portlet-default">

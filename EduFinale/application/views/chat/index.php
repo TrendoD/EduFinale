@@ -9,7 +9,7 @@
                         <small><?= ($data->tipe == "dosen") ? "Komunikasi dengan Mahasiswa Bimbingan" : "Komunikasi dengan Dosen Pembimbing" ?></small>
                     </h1>
                     <ol class="breadcrumb">
-                        <li><a href="<?= base_url('') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+                        <li><a href="<?= base_url('') ?>"><i class="fa fa-dashboard" style="font-weight: bold;" ></i> Dashboard</a></li>
                         <li class="active"><?= ($data->tipe == "dosen") ? "Chat Mahasiswa Bimbingan" : "Chat Dosen Pembimbing" ?></li>
                     </ol>
                 </div>
